@@ -138,6 +138,17 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
+        
+        /* Smooth Slide Up Fade In Animation */
+        .slide-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .slide-fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="font-body antialiased overflow-x-hidden">
@@ -158,8 +169,13 @@
             
             <!-- Slogan Text with Pop Up Reveal -->
             <div class="mt-8 flex items-center justify-center w-full">
-                <h1 id="intro-text-1" class="text-white font-display font-bold text-5xl md:text-6xl lg:text-7xl drop-shadow-lg tracking-wide text-center transform scale-50 opacity-0 translate-y-12 transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
-                    ဗိုက်စာနေပြီလား ?
+                <h1 id="intro-text-1" class="text-white font-display font-bold text-3xl sm:text-4xl md:text-6xl lg:text-7xl drop-shadow-lg tracking-wide text-center flex flex-nowrap whitespace-nowrap">
+                    <span class="char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">ဗိုက်</span>
+                    <span class="char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">စာ</span>
+                    <span class="char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">နေ</span>
+                    <span class="char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">ပြီ</span>
+                    <span class="char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">လား</span>
+                    <span class="char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">&nbsp;?</span>
                 </h1>
             </div>
         </div>
@@ -803,7 +819,7 @@
         function handleIntroNextStep() {
             if (introAnimating) return;
             
-            const text1 = document.getElementById('intro-text-1');
+            const chars = document.querySelectorAll('.char');
             const burger = document.getElementById('burger-wrapper');
             const loaderOrange = document.getElementById('loader-bg-orange');
             const loaderYellow = document.getElementById('loader-bg-yellow');
@@ -816,13 +832,17 @@
                 burger.classList.remove('scale-100');
                 burger.classList.add('scale-110', '-translate-y-4');
                 
-                text1.classList.remove('scale-50', 'opacity-0', 'translate-y-12');
-                text1.classList.add('scale-100', 'opacity-100', 'translate-y-0');
+                chars.forEach((char, index) => {
+                    setTimeout(() => {
+                        char.classList.remove('scale-50', 'opacity-0', 'translate-y-12');
+                        char.classList.add('scale-100', 'opacity-100', 'translate-y-0');
+                    }, index * 100); // 100ms staggered delay
+                });
                 
                 setTimeout(() => {
                     introStep = 1;
                     introAnimating = false;
-                }, 1000);
+                }, chars.length * 100 + 500);
                 
             } else if (introStep === 1) {
                 introAnimating = true;
@@ -830,8 +850,11 @@
                 // Second scroll: Epic multi-layer zoom & reveal
                 burger.classList.remove('scale-110', '-translate-y-4');
                 burger.classList.add('scale-[3]', 'opacity-0'); // Zoom in towards camera
-                text1.classList.remove('scale-100', 'opacity-100');
-                text1.classList.add('opacity-0', 'scale-150');
+                
+                chars.forEach((char) => {
+                    char.classList.remove('scale-100', 'opacity-100');
+                    char.classList.add('opacity-0', 'scale-150');
+                });
                 
                 setTimeout(() => {
                     // 1. Slide Yellow background up
