@@ -361,25 +361,35 @@
 
     <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
         <div class="absolute inset-0 bg-white/90 backdrop-blur-md shadow-sm" id="nav-bg"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="#home" class="flex-shrink-0 flex items-center cursor-pointer block">
-                    <!-- TODO: Insert your actual Logo PNG here. -->
-                    <img src="https://placehold.co/200x60/FF6600/FFFFFF?text=HELLO+BURGER" alt="HELLO BURGER" class="h-10 md:h-12 w-auto object-contain">
+                    <img src="logo.png" alt="HB Logo" class="h-12 w-auto object-contain" onerror="this.src='https://placehold.co/100x100/FF6600/FFFFFF?text=HB'">
                 </a>
 
-                <!-- Hamburger Icon (Visible on all screen sizes now) -->
-                <div class="flex items-center">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Home</a>
+                    <a href="#about" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">About</a>
+                    <a href="#franchise" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Franchise</a>
+                    <a href="#menu" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Menu</a>
+                    <a href="#branch" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Branch</a>
+                    <a href="#career" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Career</a>
+                    <a href="#contact" class="bg-hbOrange text-white px-6 py-2 rounded-full font-display font-bold shadow-brutal hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">Contact Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-hbBlack hover:text-hbOrange focus:outline-none">
-                        <i class="fas fa-bars text-3xl"></i>
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Sidebar / Dropdown Menu -->
-        <div id="mobile-menu" class="hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg z-20">
             <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col items-center">
                 <a href="#home" class="block px-3 py-3 font-display font-semibold text-hbBlack hover:text-hbOrange text-lg w-full text-center mobile-link">Home</a>
                 <a href="#about" class="block px-3 py-3 font-display font-semibold text-hbBlack hover:text-hbOrange text-lg w-full text-center mobile-link">About</a>
@@ -689,100 +699,103 @@
                     <h3 class="text-4xl md:text-5xl font-display font-bold text-hbBlack mb-6">Let's Build Your Future With Us</h3>
                     <p class="text-gray-600 text-lg font-medium mb-10">
                         Interested in franchise partnerships or have questions about our menu? Reach out to us directly!
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-hbLight rounded-xl flex items-center justify-center text-hbOrange text-xl flex-shrink-0 border border-gray-200">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500 font-bold uppercase">Franchise Hotline</p>
-                                <a href="tel:+959941999978" class="text-2xl font-display font-bold text-hbBlack hover:text-hbOrange transition-colors">+959 941 999 978</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-hbLight rounded-xl flex items-center justify-center text-hbOrange text-xl flex-shrink-0 border border-gray-200">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500 font-bold uppercase">Email Us</p>
-                                <a href="mailto:helloburgermyanmar@gmail.com" class="text-xl font-display font-bold text-hbBlack hover:text-hbOrange transition-colors break-all">helloburgermyanmar@gmail.com</a>
-                            </div>
-                        </div>
-                        
-                        <div class="pt-6 mt-6 border-t border-gray-100">
-                            <p class="font-display font-bold text-hbBlack mb-4">Follow Our Journey</p>
-                            <div class="flex gap-4">
-                                <a href="#" class="w-12 h-12 bg-hbBlack text-white rounded-full flex items-center justify-center text-xl hover:bg-hbOrange transition-colors shadow-sm">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="w-12 h-12 bg-hbBlack text-white rounded-full flex items-center justify-center text-xl hover:bg-hbOrange transition-colors shadow-sm">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="w-12 h-12 bg-hbBlack text-white rounded-full flex items-center justify-center text-xl hover:bg-hbOrange transition-colors shadow-sm">
-                                    <i class="fab fa-tiktok"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-hbLight p-8 md:p-10 rounded-3xl border-4 border-hbBlack shadow-brutal relative">
-                    <div class="absolute -top-6 -right-6 bg-hbYellow w-12 h-12 rounded-full border-2 border-hbBlack z-10 flex items-center justify-center transform rotate-12">
-                        <i class="fas fa-paper-plane text-hbBlack"></i>
-                    </div>
-                    
-                    <h4 class="font-display font-bold text-2xl text-hbBlack mb-6">Send us a message</h4>
-                    
-                    <form onsubmit="event.preventDefault(); showMessage();" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Full Name</label>
-                            <input type="text" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium" placeholder="Your name">
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Phone Number</label>
-                                <input type="tel" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium" placeholder="Your phone">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Interest</label>
-                                <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium appearance-none">
-                                    <option>Franchise Inquiry</option>
-                                    <option>Career</option>
-                                    <option>General Feedback</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Message</label>
-                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium resize-none" placeholder="How can we help you?"></textarea>
-                        </div>
-                        
                         <button type="submit" class="w-full bg-hbOrange text-white py-4 rounded-xl font-display font-bold text-lg shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all mt-4">
-    <footer class="bg-hbBlack text-white pt-10 pb-8 border-t-8 border-hbOrange mt-auto w-full z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center gap-6">
-                <!-- Logo -->
-                <a href="#home" class="flex items-center block">
-                    <img src="logo.png" alt="HELLO BURGER" class="h-10 md:h-12 w-auto object-contain" onerror="this.src='https://placehold.co/100x100/FF6600/FFFFFF?text=HB'">
-                </a>
+                            Submit Inquiry
+                        </button>
+                    </form>
+                    
+                    <!-- Custom Alert Message (Hidden by default) -->
+                    <div id="success-msg" class="hidden mt-4 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md font-medium">
+                        <i class="fas fa-check-circle mr-2"></i> Thank you! We will get back to you soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-hbBlack text-white pt-16 pb-8 border-t-8 border-hbOrange relative overflow-hidden mt-auto w-full z-10">
+        <!-- Background decorative effects -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-hbOrange rounded-full opacity-10 blur-[80px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-hbYellow rounded-full opacity-5 blur-[80px] transform -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
                 
-                <!-- Footer Navigation Links -->
-                <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-4">
-                    <a href="#home" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">Home</a>
-                    <a href="#about" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">About</a>
-                    <a href="#franchise" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">Franchise</a>
-                    <a href="#menu" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">Menu</a>
-                    <a href="#branch" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">Branch</a>
-                    <a href="#career" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">Career</a>
-                    <a href="#contact" class="font-display font-medium text-gray-400 hover:text-hbOrange transition-colors">Contact Us</a>
+                <!-- Brand Column -->
+                <div class="space-y-4">
+                    <a href="#home" class="inline-block">
+                        <!-- TODO: Put your real landscape logo PNG filename here -->
+                        <img src="logo.png" alt="HELLO BURGER Logo" class="h-12 sm:h-14 md:h-16 w-auto object-contain" style="color: transparent;">
+                    </a>
+                    <p class="text-gray-400 font-medium mt-4 max-w-xs leading-relaxed">Friendly, Bold, and Juicy. Serving the best burgers with a smile across Myanmar.</p>
                 </div>
 
-                <p class="text-sm text-gray-500 text-center">&copy; <span id="year"></span> HELLO BURGER. All rights reserved.</p>
+                <!-- Explore Links -->
+                <div>
+                    <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Explore</h4>
+                    <ul class="space-y-3 font-medium">
+                        <li>
+                            <a href="#home" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#menu" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Signature Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#branch" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Our Branches
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Business Links -->
+                <div>
+                    <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Business</h4>
+                    <ul class="space-y-3 font-medium">
+                        <li>
+                            <a href="#franchise" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Franchise
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#career" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Career
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Connect -->
+                <div>
+                    <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Connect With Us</h4>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#1877F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#E4405F] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-white hover:text-black hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-tiktok text-lg"></i></a>
+                        <a href="tel:+95900000000" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#10B981] hover:-translate-y-1 transition-all shadow-lg"><i class="fas fa-phone text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#7360F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-viber text-lg"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#229ED9] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-telegram-plane text-lg"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="flex flex-col text-center items-center text-sm text-gray-500">
+                <p>&copy; <span id="year"></span> HELLO BURGER. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -804,25 +817,28 @@
         // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
-        const icon = btn.querySelector('i');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        if (btn && menu) {
+            const icon = btn.querySelector('i');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        function toggleMenu() {
-            menu.classList.toggle('hidden');
-            if(menu.classList.contains('hidden')){
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+            function toggleMenu() {
+                menu.classList.toggle('hidden');
+                if(menu.classList.contains('hidden')){
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
             }
-        }
-        btn.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if(!menu.classList.contains('hidden')) toggleMenu();
+            btn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if(!menu.classList.contains('hidden')) toggleMenu();
+                });
             });
-        });
+        }
 
         function showMessage() {
             const msg = document.getElementById('success-msg');
