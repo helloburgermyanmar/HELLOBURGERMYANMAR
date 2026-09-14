@@ -61,7 +61,7 @@
             transition: transform 0.25s ease-out;
             border-radius: 2px;
         }
-        .nav-link:hover::after {
+        .nav-link:hover::after, .nav-link.active-link::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
@@ -101,10 +101,7 @@
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
         }
-
-        .promo-slider::-webkit-scrollbar {
-            display: none;
-        }
+        .promo-slider::-webkit-scrollbar { display: none; }
 
         .promo-slide {
             flex: 0 0 100%;
@@ -112,7 +109,6 @@
             scroll-snap-align: center;
             position: relative;
         }
-
         .promo-slide img {
             width: 100%;
             height: 100%;
@@ -125,7 +121,7 @@
             border-bottom: 3px solid #222222;
             padding: 15px;
             position: sticky;
-            top: 80px; /* Aligned below navbar */
+            top: 80px; 
             z-index: 40;
         }
 
@@ -136,10 +132,7 @@
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
         }
-
-        .categories-container::-webkit-scrollbar {
-            display: none;
-        }
+        .categories-container::-webkit-scrollbar { display: none; }
 
         .category-btn {
             font-family: 'JtGilboys', 'Fredoka', sans-serif;
@@ -155,7 +148,6 @@
             transition: all 0.2s ease;
             box-shadow: 2px 2px 0 #222222;
         }
-
         .category-btn.active {
             background-color: #FF6600;
             color: #FFFFFF;
@@ -171,7 +163,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .category-title::before {
             content: '';
             display: block;
@@ -201,7 +192,6 @@
             transition: transform 0.1s ease;
             cursor: pointer;
         }
-
         .menu-item:active {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0 #222222;
@@ -270,7 +260,6 @@
             border-radius: 50%;
             overflow: hidden;
         }
-
         .add-btn img {
             width: 100%;
             height: 100%;
@@ -287,10 +276,7 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
-        .extras-container::-webkit-scrollbar {
-            display: none;
-        }
+        .extras-container::-webkit-scrollbar { display: none; }
 
         .extra-box {
             min-width: 100px;
@@ -307,7 +293,6 @@
             cursor: pointer;
             transition: transform 0.1s ease;
         }
-
         .extra-box:active {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0 #222222;
@@ -329,7 +314,6 @@
             line-height: 1.2;
             margin-bottom: 5px;
         }
-
         .extra-price { 
             color: #FF6600; 
             font-size: 14px; 
@@ -348,39 +332,39 @@
 
         <div id="loader-content" class="relative z-30 flex flex-col items-center w-full max-w-4xl px-4 transition-transform duration-1000 ease-out">
             <div id="burger-wrapper" class="relative transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform scale-50 -translate-y-20 opacity-0">
-                <img src="loading.png" alt="loading.png" class="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl animate-[floating_3s_ease-in-out_infinite] mx-auto">
+                <img src="loading.png" alt="Loading" onerror="this.src='https://placehold.co/300x300/FFD400/222222?text=Burger'" class="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl animate-[floating_3s_ease-in-out_infinite] mx-auto">
             </div>
             
-            <div class="mt-8 flex items-center justify-center w-full">
-                <!-- Javascript will populate characters here to prevent wrapping and apply staggered animation -->
-                <h1 id="intro-text-1" class="text-white font-display font-bold text-3xl sm:text-4xl md:text-5xl drop-shadow-lg tracking-wide text-center flex flex-nowrap justify-center whitespace-nowrap">
+            <div class="mt-8 flex items-center justify-center w-full overflow-hidden">
+                <h1 id="intro-text-1" class="text-white font-display font-bold text-3xl sm:text-4xl md:text-5xl drop-shadow-lg tracking-wide text-center flex flex-nowrap justify-center whitespace-nowrap overflow-visible">
+                    <!-- JS will populate -->
                 </h1>
             </div>
         </div>
     </div>
 
     <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="absolute inset-0 bg-white/90 backdrop-blur-md shadow-sm" id="nav-bg"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="absolute inset-0 bg-white/90 backdrop-blur-md shadow-sm opacity-0 transition-opacity" id="nav-bg"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="#home" class="flex-shrink-0 flex items-center cursor-pointer block">
-                    <img src="logo.png" alt="HB Logo" class="h-12 w-auto object-contain" onerror="this.src='https://placehold.co/100x100/FF6600/FFFFFF?text=HB'">
+                    <img src="logo.png" alt="HB Logo" onerror="this.src='https://placehold.co/150x50/FF6600/FFFFFF?text=LOGO'" class="h-10 md:h-12 w-auto object-contain">
                 </a>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Home</a>
-                    <a href="#about" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">About</a>
-                    <a href="#franchise" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Franchise</a>
-                    <a href="#menu" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Menu</a>
-                    <a href="#branch" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Branch</a>
-                    <a href="#career" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors">Career</a>
-                    <a href="#contact" class="bg-hbOrange text-white px-6 py-2 rounded-full font-display font-bold shadow-brutal hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">Contact Us</a>
+                <div class="hidden lg:flex space-x-6 xl:space-x-8 items-center">
+                    <a href="#home" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors desktop-link">Home</a>
+                    <a href="#about" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors desktop-link">About</a>
+                    <a href="#franchise" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors desktop-link">Franchise</a>
+                    <a href="#menu" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors desktop-link">Menu</a>
+                    <a href="#branch" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors desktop-link">Branch</a>
+                    <a href="#career" class="nav-link font-display font-semibold text-hbBlack hover:text-hbOrange transition-colors desktop-link">Career</a>
+                    <a href="#contact" class="bg-hbOrange text-white px-6 py-2 rounded-full font-display font-bold shadow-brutal hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all desktop-link">Contact Us</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
+                <div class="lg:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-hbBlack hover:text-hbOrange focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
@@ -389,7 +373,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg z-20">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
             <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col items-center">
                 <a href="#home" class="block px-3 py-3 font-display font-semibold text-hbBlack hover:text-hbOrange text-lg w-full text-center mobile-link">Home</a>
                 <a href="#about" class="block px-3 py-3 font-display font-semibold text-hbBlack hover:text-hbOrange text-lg w-full text-center mobile-link">About</a>
@@ -402,27 +386,21 @@
         </div>
     </nav>
 
-    <section id="home" class="page-section hidden relative min-h-screen bg-hbBlack overflow-hidden">
+    <section id="home" class="page-section hidden bg-hbBlack flex flex-col w-full">
         <!-- Slider Container -->
-        <div class="absolute inset-0 w-full h-full pt-20 overflow-hidden">
+        <div class="relative w-full h-[60vh] md:h-[80vh] lg:h-screen pt-20 overflow-hidden flex-shrink-0 z-0">
             <!-- Slider Track -->
             <div id="home-slider-track" class="flex w-full h-full transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
-                <!-- Slide 1 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- TODO: Replace placeholder with your actual image 1 -->
                     <img src="https://placehold.co/1920x1080/FF6600/FFFFFF?text=Hero+Banner+1" alt="Hello Burger Slide 1" class="w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
-                <!-- Slide 2 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- TODO: Replace placeholder with your actual image 2 -->
                     <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
-                <!-- Slide 3 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- TODO: Replace placeholder with your actual image 3 -->
                     <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
@@ -437,6 +415,30 @@
                 <button class="w-4 h-4 rounded-full bg-white/50 transition-colors slide-dot" aria-label="Slide 3"></button>
             </div>
         </div>
+        
+        <!-- Typography Highlight Block -->
+        <div class="w-full relative bg-hbBlack py-24 px-6 z-10 flex flex-col items-center justify-center text-center overflow-hidden border-t-8 border-hbOrange shadow-2xl">
+            <!-- Decorative Background Element -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0iI0ZGRkZGRiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+PC9zdmc+')] pointer-events-none opacity-50"></div>
+            
+            <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+                <!-- Subheading -->
+                <span class="inline-block border-2 border-hbYellow text-hbYellow px-4 py-1.5 rounded-full font-display font-bold uppercase tracking-[0.2em] text-xs sm:text-sm mb-8 shadow-sm">
+                    Myanmar Burger Brand <span class="mx-2 text-white">•</span> Since 2018
+                </span>
+                
+                <!-- Main Bold Title -->
+                <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-tight mb-10 drop-shadow-lg tracking-wide">
+                    <span class="block hover:-translate-y-1 transition-transform duration-300">Good <span class="text-hbOrange">Burgers.</span></span>
+                    <span class="block hover:-translate-y-1 transition-transform duration-300">Good <span class="text-hbYellow">Moments.</span></span>
+                </h2>
+                
+                <!-- Description -->
+                <p class="text-lg sm:text-xl font-medium text-gray-400 max-w-3xl mx-auto leading-relaxed mt-2 border-t border-gray-800 pt-10">
+                    Freshly prepared burgers, bold flavors and a simple promise — consistent quality and a satisfying <span class="text-white font-bold tracking-wider">HELLOBURGER</span> experience every time.
+                </p>
+            </div>
+        </div>
     </section>
 
     <section id="about" class="page-section hidden pt-32 pb-20 bg-white relative min-h-screen">
@@ -444,7 +446,6 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1 relative">
                     <div class="absolute inset-0 bg-hbYellow rounded-3xl transform -rotate-3 scale-105"></div>
-                    <!-- TODO: Replace the placeholder image below with your actual Shop/Team Photo -->
                     <img src="https://placehold.co/600x500/FF6600/FFFFFF?text=About+Photo" alt="Hello Burger History" class="relative z-10 w-full h-auto rounded-3xl border-4 border-hbBlack shadow-brutal-lg object-cover">
                     <!-- Fun Badge -->
                     <div class="absolute -bottom-6 -right-6 bg-white w-24 h-24 rounded-full border-4 border-hbBlack shadow-brutal flex items-center justify-center z-20 animate-spin-slow" style="animation-duration: 10s;">
@@ -485,24 +486,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="menu" class="page-section hidden pt-20 bg-[#FFF9F5] min-h-screen">
-        <div class="promo-slider-container">
-            <div class="promo-slider" id="menu-promo-slider">
-                <!-- Promo slides will be injected here via JS -->
-            </div>
-        </div>
-
-        <div class="categories-wrapper shadow-sm">
-            <div class="categories-container max-w-6xl mx-auto px-4" id="category-tabs">
-                <!-- Categories will be injected here via JS -->
-            </div>
-        </div>
-
-        <div id="menu-container" class="max-w-6xl mx-auto pt-4 pb-20">
-            <!-- Menu items will be injected here via JS -->
         </div>
     </section>
 
@@ -613,6 +596,24 @@
         </div>
     </section>
 
+    <section id="menu" class="page-section hidden bg-[#FFF9F5] min-h-screen pt-20">
+        <div class="promo-slider-container">
+            <div class="promo-slider" id="menu-promo-slider">
+                <!-- Promo slides will be injected here via JS -->
+            </div>
+        </div>
+
+        <div class="categories-wrapper shadow-sm">
+            <div class="categories-container max-w-6xl mx-auto px-4" id="category-tabs">
+                <!-- Categories will be injected here via JS -->
+            </div>
+        </div>
+
+        <div id="menu-container" class="max-w-6xl mx-auto pt-4 pb-20">
+            <!-- Menu items will be injected here via JS -->
+        </div>
+    </section>
+
     <section id="branch" class="page-section hidden pt-32 pb-20 bg-white min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -693,18 +694,63 @@
     <section id="contact" class="page-section hidden pt-32 pb-20 bg-white min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                
                 <div>
                     <h2 class="font-display font-bold text-xl text-hbOrange uppercase tracking-wide mb-2">Contact Us</h2>
                     <h3 class="text-4xl md:text-5xl font-display font-bold text-hbBlack mb-6">Let's Build Your Future With Us</h3>
                     <p class="text-gray-600 text-lg font-medium mb-10">
                         Interested in franchise partnerships or have questions about our menu? Reach out to us directly!
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-hbLight rounded-xl flex items-center justify-center text-hbOrange text-xl flex-shrink-0 border border-gray-200">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-bold uppercase">Franchise Hotline</p>
+                                <a href="tel:+959941999978" class="text-2xl font-display font-bold text-hbBlack hover:text-hbOrange transition-colors">+959 941 999 978</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-hbLight rounded-xl flex items-center justify-center text-hbOrange text-xl flex-shrink-0 border border-gray-200">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-bold uppercase">Email Us</p>
+                                <a href="mailto:helloburgermyanmar@gmail.com" class="text-xl font-display font-bold text-hbBlack hover:text-hbOrange transition-colors break-all">helloburgermyanmar@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-hbLight p-8 md:p-10 rounded-3xl border-4 border-hbBlack shadow-brutal relative">
+                    <h4 class="font-display font-bold text-2xl text-hbBlack mb-6">Send us a message</h4>
+                    <form onsubmit="event.preventDefault(); showMessage();" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium" placeholder="Your name">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium" placeholder="Your phone">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Interest</label>
+                                <select class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium">
+                                    <option>Franchise Inquiry</option>
+                                    <option>Career</option>
+                                    <option>General Feedback</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Message</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-hbOrange focus:ring-0 outline-none transition-colors bg-white font-medium resize-none" placeholder="How can we help you?"></textarea>
+                        </div>
                         <button type="submit" class="w-full bg-hbOrange text-white py-4 rounded-xl font-display font-bold text-lg shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all mt-4">
                             Submit Inquiry
                         </button>
                     </form>
-                    
-                    <!-- Custom Alert Message (Hidden by default) -->
                     <div id="success-msg" class="hidden mt-4 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md font-medium">
                         <i class="fas fa-check-circle mr-2"></i> Thank you! We will get back to you soon.
                     </div>
@@ -713,47 +759,25 @@
         </div>
     </section>
 
-    <footer class="bg-hbBlack text-white pt-16 pb-8 border-t-8 border-hbOrange relative overflow-hidden mt-auto w-full z-10">
-        <!-- Background decorative effects -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-hbOrange rounded-full opacity-10 blur-[80px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-hbYellow rounded-full opacity-5 blur-[80px] transform -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <footer class="bg-hbBlack text-white pt-16 pb-8 border-t-8 border-hbOrange relative z-10 w-full mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
                 
-                <!-- Brand Column -->
-                <div class="space-y-4">
-                    <a href="#home" class="inline-block">
-                        <!-- TODO: Put your real landscape logo PNG filename here -->
-                        <img src="logo.png" alt="HELLO BURGER Logo" class="h-12 sm:h-14 md:h-16 w-auto object-contain" style="color: transparent;">
+                <!-- Logo Block -->
+                <div class="flex flex-col items-start space-y-4">
+                    <a href="#home" class="block">
+                        <img src="logo.png" alt="HELLO BURGER" onerror="this.src='https://placehold.co/200x80/FF6600/FFFFFF?text=LOGO'" class="h-16 w-auto object-contain">
                     </a>
-                    <p class="text-gray-400 font-medium mt-4 max-w-xs leading-relaxed">Friendly, Bold, and Juicy. Serving the best burgers with a smile across Myanmar.</p>
                 </div>
 
                 <!-- Explore Links -->
                 <div>
                     <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Explore</h4>
                     <ul class="space-y-3 font-medium">
-                        <li>
-                            <a href="#home" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#about" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#menu" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Signature Menu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#branch" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Our Branches
-                            </a>
-                        </li>
+                        <li><a href="#home" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> About</a></li>
+                        <li><a href="#franchise" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Franchise</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Menu</a></li>
                     </ul>
                 </div>
 
@@ -761,40 +785,28 @@
                 <div>
                     <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Business</h4>
                     <ul class="space-y-3 font-medium">
-                        <li>
-                            <a href="#franchise" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Franchise
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#career" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Career
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#contact" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Contact Us
-                            </a>
-                        </li>
+                        <li><a href="#branch" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Branch</a></li>
+                        <li><a href="#career" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Career</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-hbOrange transition-all flex items-center gap-2 group"><i class="fas fa-chevron-right text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-hbOrange"></i> Contact Us</a></li>
                     </ul>
                 </div>
 
-                <!-- Social Connect -->
+                <!-- Connect Links -->
                 <div>
                     <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Connect With Us</h4>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#1877F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-facebook-f text-lg"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#E4405F] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-instagram text-lg"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-white hover:text-black hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-tiktok text-lg"></i></a>
-                        <a href="tel:+95900000000" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#10B981] hover:-translate-y-1 transition-all shadow-lg"><i class="fas fa-phone text-lg"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#7360F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-viber text-lg"></i></a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#229ED9] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-telegram-plane text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#1877F2] hover:-translate-y-1 transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#E4405F] hover:-translate-y-1 transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#000000] hover:-translate-y-1 transition-all"><i class="fab fa-tiktok"></i></a>
+                        <a href="tel:+95900000000" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#10B981] hover:-translate-y-1 transition-all"><i class="fas fa-phone"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#7360F2] hover:-translate-y-1 transition-all"><i class="fab fa-viber"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#229ED9] hover:-translate-y-1 transition-all"><i class="fab fa-telegram-plane"></i></a>
                     </div>
                 </div>
 
             </div>
             
-            <div class="flex flex-col text-center items-center text-sm text-gray-500">
+            <div class="text-center text-sm text-gray-500">
                 <p>&copy; <span id="year"></span> HELLO BURGER. All rights reserved.</p>
             </div>
         </div>
@@ -805,14 +817,17 @@
 
         // Navbar Scroll
         const navBg = document.getElementById('nav-bg');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navBg.classList.add('shadow-md');
-                navBg.classList.remove('opacity-0');
-            } else {
-                navBg.classList.remove('shadow-md');
-            }
-        });
+        if(navBg) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navBg.classList.add('opacity-100');
+                    navBg.classList.remove('opacity-0');
+                } else {
+                    navBg.classList.remove('opacity-100');
+                    navBg.classList.add('opacity-0');
+                }
+            });
+        }
 
         // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
@@ -870,30 +885,44 @@
                 history.replaceState(null, null, '#home');
             }
             window.scrollTo(0, 0);
+
+            // Update active links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === hash) {
+                    link.classList.add('text-hbOrange', 'active-link');
+                    link.classList.remove('text-hbBlack');
+                } else {
+                    link.classList.remove('text-hbOrange', 'active-link');
+                    link.classList.add('text-hbBlack');
+                }
+            });
         }
         window.addEventListener('hashchange', handleRouting);
         window.addEventListener('DOMContentLoaded', handleRouting);
 
-        // --- Loader Animation ---
+        // Loader Animation
         document.body.style.overflow = 'hidden';
         const textContainer = document.getElementById('intro-text-1');
-        // Separating specific Myanmar syllables carefully to avoid breaking font rendering
         const syllables = ["ဗိုက်", "စာ", "နေ", "ပြီ", "လား", "&nbsp;?"];
         
-        syllables.forEach((syllable) => {
-            const span = document.createElement('span');
-            span.className = 'char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]';
-            span.innerHTML = syllable;
-            textContainer.appendChild(span);
-        });
+        if (textContainer) {
+            syllables.forEach((syllable) => {
+                const span = document.createElement('span');
+                span.className = 'char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]';
+                span.innerHTML = syllable;
+                textContainer.appendChild(span);
+            });
+        }
 
         let introStep = 0;
         let introAnimating = false;
         
         setTimeout(() => {
             const burger = document.getElementById('burger-wrapper');
-            burger.classList.remove('scale-50', '-translate-y-20', 'opacity-0');
-            burger.classList.add('scale-100', 'translate-y-0', 'opacity-100');
+            if(burger) {
+                burger.classList.remove('scale-50', '-translate-y-20', 'opacity-0');
+                burger.classList.add('scale-100', 'translate-y-0', 'opacity-100');
+            }
         }, 500);
         
         function handleIntroNextStep() {
@@ -903,20 +932,20 @@
             const loaderOrange = document.getElementById('loader-bg-orange');
             const loaderYellow = document.getElementById('loader-bg-yellow');
             const loaderContent = document.getElementById('loader-content');
-            const chars = textContainer.querySelectorAll('.char');
+            const chars = textContainer ? textContainer.querySelectorAll('.char') : [];
+
+            if (!burger || !loaderOrange) return;
 
             if (introStep === 0) {
                 introAnimating = true;
-                
                 burger.classList.remove('scale-100');
                 burger.classList.add('scale-110', '-translate-y-4');
                 
-                // Staggered Pop-up Animation
                 chars.forEach((char, index) => {
                     setTimeout(() => {
                         char.classList.remove('opacity-0', 'scale-50', 'translate-y-12');
                         char.classList.add('opacity-100', 'scale-100', 'translate-y-0');
-                    }, index * 150); // Delay for each letter
+                    }, index * 150);
                 });
                 
                 setTimeout(() => {
@@ -926,7 +955,6 @@
                 
             } else if (introStep === 1) {
                 introAnimating = true;
-                
                 burger.classList.remove('scale-110', '-translate-y-4');
                 burger.classList.add('scale-[3]', 'opacity-0'); 
                 
@@ -956,22 +984,24 @@
         }
 
         function wheelHandler(e) {
-            if(document.getElementById('loader-screen').style.display === 'none') return;
-            if (e.deltaY > 0) handleIntroNextStep();
+            const loader = document.getElementById('loader-screen');
+            if(loader && loader.style.display !== 'none' && e.deltaY > 0) {
+                handleIntroNextStep();
+            }
         }
         window.addEventListener('wheel', wheelHandler);
 
         let touchStartY = 0;
-        window.addEventListener('touchstart', e => {
-            touchStartY = e.touches[0].clientY;
-        });
+        window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, {passive: true});
         function touchEndHandler(e) {
-            if(document.getElementById('loader-screen').style.display === 'none') return;
-            if (touchStartY - e.changedTouches[0].clientY > 50) handleIntroNextStep();
+            const loader = document.getElementById('loader-screen');
+            if(loader && loader.style.display !== 'none') {
+                if (touchStartY - e.changedTouches[0].clientY > 50) handleIntroNextStep();
+            }
         }
         window.addEventListener('touchend', touchEndHandler);
 
-        // --- Home Slider Logic ---
+        // Home Slider Logic
         const sliderTrack = document.getElementById('home-slider-track');
         const slides = document.querySelectorAll('.home-slide');
         const slideDots = document.querySelectorAll('.slide-dot');
@@ -982,7 +1012,7 @@
         let autoPlayTimer;
 
         function goToSlide(index) {
-            if(!sliderTrack) return;
+            if(!sliderTrack || slides.length === 0) return;
             currentSlideIndex = index;
             if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
             if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
@@ -1055,13 +1085,10 @@
                 startSliderAutoPlay();
             });
         });
-        startSliderAutoPlay();
+        if (slides.length > 0) startSliderAutoPlay();
 
-        // --- Menu Data and Rendering Logic ---
-        const promoData = [
-            "promo1.webp",
-            "promo2.webp"
-        ];
+        // Menu Data and Rendering Logic
+        const promoData = ["promo1.webp", "promo2.webp"];
 
         const menuData = [
             {
@@ -1146,7 +1173,7 @@
         }
 
         function renderMenu() {
-            if(!menuContainer) return;
+            if(!menuContainer || !categoryTabsContainer) return;
             menuData.forEach((section, index) => {
                 const tab = document.createElement('button');
                 tab.className = `category-btn ${index === 0 ? 'active' : ''}`;
@@ -1229,7 +1256,9 @@
 
         // Menu Scroll Spy
         window.addEventListener('scroll', () => {
-            if(document.getElementById('menu').classList.contains('hidden')) return;
+            const menuSection = document.getElementById('menu');
+            if(!menuSection || menuSection.classList.contains('hidden')) return;
+            
             let current = '';
             const sections = document.querySelectorAll('#menu-container > div');
 
