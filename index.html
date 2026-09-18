@@ -510,15 +510,16 @@
         </div>
 
         <!-- Facebook Video Highlight Section -->
-        <div class="w-full pb-24 text-center mt-12">
+        <div class="w-full pb-10 text-center mt-12">
             <div class="flex items-center gap-4 mb-8 justify-center px-4">
-                <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
-                <h3 class="font-display font-bold text-xl md:text-2xl text-hbBlack uppercase tracking-wide text-center">Catch Us In Action</h3>
-                <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
-            </div>
-            
-            <!-- Video Container -->
-            <div class="w-full h-auto aspect-[9/16] md:aspect-auto md:h-[85vh] bg-black relative">
+            <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
+            <h3 class="font-display font-bold text-xl md:text-2xl text-hbBlack uppercase tracking-wide text-center">Catch Us In Action</h3>
+            <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
+        </div>
+        
+        <!-- Video Container -->
+        <div class="w-full max-w-5xl mx-auto px-4 mb-10">
+            <div class="w-full aspect-video relative overflow-hidden bg-black rounded-2xl shadow-lg border-4 border-hbBlack">
                 <iframe 
                     src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&autoplay=1&mute=1" 
                     class="w-full h-full border-none absolute top-0 left-0" 
@@ -529,9 +530,10 @@
                 </iframe>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="about" class="page-section hidden pt-32 pb-20 bg-white relative min-h-screen">
+<section id="about" class="page-section hidden pt-32 pb-20 bg-white relative min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1 relative">
@@ -711,6 +713,49 @@
                 <h2 class="font-display font-bold text-xl text-hbOrange uppercase tracking-wide mb-2">Our Locations</h2>
                 <h3 class="text-4xl md:text-5xl font-display font-bold text-hbBlack mb-4">Find a HELLO BURGER</h3>
                 <p class="text-gray-600 max-w-2xl mx-auto text-lg font-medium">We are expanding rapidly across Myanmar. Visit us at any of our branches!</p>
+            </div>
+
+            <!-- Top 4 Branch Photos Section -->
+            <div class="grid grid-cols-1 gap-8 mb-16 max-w-4xl mx-auto">
+                <!-- Branch 1 Photo Card -->
+                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
+                        <img src="https://placehold.co/800x600/FF6600/FFFFFF?text=Branch+1+Photo" alt="Branch 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
+                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 1</h4>
+                    </div>
+                </div>
+
+                <!-- Branch 2 Photo Card -->
+                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
+                        <img src="https://placehold.co/800x600/FFD400/222222?text=Branch+2+Photo" alt="Branch 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
+                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 2</h4>
+                    </div>
+                </div>
+
+                <!-- Branch 3 Photo Card -->
+                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
+                        <img src="https://placehold.co/800x600/222222/FFFFFF?text=Branch+3+Photo" alt="Branch 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
+                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 3</h4>
+                    </div>
+                </div>
+
+                <!-- Branch 4 Photo Card -->
+                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
+                        <img src="https://placehold.co/800x600/F9F9F9/FF6600?text=Branch+4+Photo" alt="Branch 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
+                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 4</h4>
+                    </div>
+                </div>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
