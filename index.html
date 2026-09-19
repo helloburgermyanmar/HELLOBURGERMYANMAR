@@ -750,23 +750,81 @@
 
     <section id="contact" class="page-section hidden pt-32 pb-20 bg-white min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div class="text-center mb-16">
+                <h2 class="font-display font-bold text-xl text-hbOrange uppercase tracking-wide mb-2">Contact Us</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-hbBlack mb-4">Get In Touch</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg font-medium">Have questions or want to leave feedback? Send us a message or connect via our social channels.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 
-                <div>
-                    <h2 class="font-display font-bold text-xl text-hbOrange uppercase tracking-wide mb-2">Contact Us</h2>
-                    <h3 class="text-4xl md:text-5xl font-display font-bold text-hbBlack mb-6">Let's Build Your Future With Us</h3>
-                    <p class="text-gray-600 text-lg font-medium mb-10">
-                        Interested in franchise partnerships or have questions about our menu? Reach out to us directly!
-                        <button type="submit" class="w-full bg-hbOrange text-white py-4 rounded-xl font-display font-bold text-lg shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all mt-4">
-                            Submit Inquiry
+                <!-- Form Side -->
+                <div class="bg-white border-4 border-hbBlack rounded-3xl p-8 lg:p-10 shadow-brutal">
+                    <h4 class="font-display font-bold text-2xl text-hbBlack mb-6">Send a Message</h4>
+                    <!-- HTML Form using FormSubmit -->
+                    <form action="https://formsubmit.co/helloburgermyanmar@gmail.com" method="POST" class="space-y-5">
+                        <input type="hidden" name="_subject" value="New Website Inquiry for HELLO BURGER">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div>
+                            <label class="block font-display font-bold text-hbBlack mb-2">Your Name</label>
+                            <input type="text" name="name" required class="w-full bg-hbLight border-2 border-hbBlack rounded-xl px-4 py-3 font-medium focus:outline-none focus:ring-4 focus:ring-hbOrange/30 focus:border-hbOrange transition-all" placeholder="Enter your name">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-display font-bold text-hbBlack mb-2">Gmail Address</label>
+                            <input type="email" name="email" required class="w-full bg-hbLight border-2 border-hbBlack rounded-xl px-4 py-3 font-medium focus:outline-none focus:ring-4 focus:ring-hbOrange/30 focus:border-hbOrange transition-all" placeholder="your@gmail.com">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-display font-bold text-hbBlack mb-2">Message</label>
+                            <textarea name="message" rows="4" required class="w-full bg-hbLight border-2 border-hbBlack rounded-xl px-4 py-3 font-medium focus:outline-none focus:ring-4 focus:ring-hbOrange/30 focus:border-hbOrange transition-all resize-none" placeholder="Write your message here..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-hbOrange text-white py-4 rounded-xl font-display font-bold text-lg shadow-brutal hover:shadow-brutal-hover hover:-translate-y-1 transition-all mt-4 flex justify-center items-center gap-3">
+                            Send Message <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
+                </div>
+
+                <!-- Info Side -->
+                <div class="bg-hbLight border-4 border-hbBlack rounded-3xl p-8 lg:p-10 shadow-brutal">
+                    <h4 class="font-display font-bold text-2xl text-hbBlack mb-8">Contact Details</h4>
                     
-                    <!-- Custom Alert Message (Hidden by default) -->
-                    <div id="success-msg" class="hidden mt-4 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md font-medium">
-                        <i class="fas fa-check-circle mr-2"></i> Thank you! We will get back to you soon.
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 rounded-full bg-hbYellow flex items-center justify-center text-hbBlack text-2xl flex-shrink-0 border-2 border-hbBlack shadow-sm">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-display font-bold text-sm text-gray-500 uppercase mb-1">Phone</h5>
+                                <a href="tel:09968885291" class="text-hbBlack hover:text-hbOrange font-bold text-xl transition-colors">09 968 885 291</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 rounded-full bg-hbOrange flex items-center justify-center text-white text-2xl flex-shrink-0 border-2 border-hbBlack shadow-sm">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h5 class="font-display font-bold text-sm text-gray-500 uppercase mb-1">Email</h5>
+                                <a href="mailto:helloburgermyanmar@gmail.com" class="text-hbBlack hover:text-hbOrange font-bold text-lg transition-colors truncate block">helloburgermyanmar@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t-2 border-gray-200">
+                            <h5 class="font-display font-bold text-sm text-gray-500 uppercase mb-4">Follow & Join Us</h5>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="https://www.facebook.com/profile.php?id=100069918460934" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#1877F2] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-facebook-f text-xl"></i></a>
+                                <a href="https://www.instagram.com/helloburger_myanmar/?hl=en" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#E4405F] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-instagram text-xl"></i></a>
+                                <a href="https://www.tiktok.com/@helloburgermyanmar?lang=en" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-black hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-tiktok text-xl"></i></a>
+                                <a href="https://invite.viber.com/?g2=AQAL10SiNwNSvlcr0j38906lUfsbxIPiAn8Ft3SA4Mj9sezskGyfdBjIULJmciB%2B" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#7360F2] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-viber text-xl"></i></a>
+                                <a href="https://t.me/HELLO251508" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#229ED9] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-telegram-plane text-xl"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
