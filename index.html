@@ -26,7 +26,7 @@
                         hbLight: '#F9F9F9'
                     },
                     fontFamily: {
-                        display: ['Fredoka', 'sans-serif'], 
+                        display: ['JtGilboys', 'Fredoka', 'sans-serif'], 
                         body: ['Nunito', 'sans-serif'],    
                     },
                     boxShadow: {
@@ -233,11 +233,15 @@
         }
 
         .item-name {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
             color: #222222;
             line-height: 1.2;
             margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: -0.3px;
         }
 
         .item-desc {
@@ -267,7 +271,12 @@
         }
 
         @media (min-width: 768px) {
-            .item-name { font-size: 18px; margin-bottom: 6px; }
+            .item-name { 
+                font-size: 18px; 
+                margin-bottom: 6px; 
+                white-space: normal;
+                letter-spacing: normal;
+            }
             .item-desc { font-size: 13px; margin-bottom: 12px; }
             .item-price { font-size: 18px; }
         }
