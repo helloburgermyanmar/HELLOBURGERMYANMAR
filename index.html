@@ -762,9 +762,11 @@
                 <div class="bg-white border-4 border-hbBlack rounded-3xl p-8 lg:p-10 shadow-brutal">
                     <h4 class="font-display font-bold text-2xl text-hbBlack mb-6">Send a Message</h4>
                     <!-- HTML Form using FormSubmit -->
-                    <form action="https://formsubmit.co/helloburgermyanmar@gmail.com" method="POST" class="space-y-5">
-                        <input type="hidden" name="_subject" value="New Website Inquiry for HELLO BURGER">
-                        <input type="hidden" name="_captcha" value="false">
+                    <form action="https://formsubmit.co/helloburgermyanmar@gmail.com" method="POST" class="space-y-5" id="contact-form">
+                        <!-- Required fields to force FormSubmit activation -->
+                        <input type="hidden" name="_subject" value="New Message from HELLO BURGER Website">
+                        <input type="hidden" name="_captcha" value="true">
+                        <input type="hidden" name="_template" value="table">
                         
                         <div>
                             <label class="block font-display font-bold text-hbBlack mb-2">Your Name</label>
