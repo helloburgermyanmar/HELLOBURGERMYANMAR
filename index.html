@@ -414,6 +414,66 @@
             animation: categoryPopUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
             opacity: 0;
         }
+
+        /* Branch Scroll Animation */
+        .branch-card {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+        .branch-img-wrapper {
+            width: 100%;
+            height: 100%;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .branch-info-wrapper {
+            width: 100%;
+            height: 0%;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            align-items: center;
+            background-color: #F9F9F9;
+        }
+        .branch-title-overlay {
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Mobile Active State */
+        .branch-card.branch-active .branch-img-wrapper {
+            height: 50%;
+        }
+        .branch-card.branch-active .branch-info-wrapper {
+            height: 50%;
+            opacity: 1;
+            border-top: 4px solid #222222;
+        }
+        .branch-card.branch-active .branch-title-overlay {
+            opacity: 0;
+        }
+
+        /* PC Active State */
+        @media (min-width: 768px) {
+            .branch-card {
+                flex-direction: row;
+                height: 450px;
+            }
+            .branch-info-wrapper {
+                height: 100%;
+                width: 0%;
+            }
+            .branch-card.branch-active .branch-img-wrapper {
+                width: 55%;
+                height: 100%;
+            }
+            .branch-card.branch-active .branch-info-wrapper {
+                width: 45%;
+                height: 100%;
+                border-top: none;
+                border-left: 4px solid #222222;
+            }
+        }
     </style>
 </head>
 <body class="font-body antialiased overflow-x-hidden">
@@ -644,44 +704,76 @@
             </div>
 
             <!-- Top 4 Branch Photos Section -->
-            <div class="grid grid-cols-1 gap-8 mb-16 max-w-4xl mx-auto">
+            <div class="flex flex-col gap-12 mb-20 max-w-5xl mx-auto">
                 <!-- Branch 1 Photo Card -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
-                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
-                        <img src="https://placehold.co/800x600/FF6600/FFFFFF?text=Branch+1+Photo" alt="Branch 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="branch-card bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover transition-shadow">
+                    <div class="branch-img-wrapper relative overflow-hidden cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="https://placehold.co/800x600/FF6600/FFFFFF?text=Branch+1+Photo" alt="Branch 1" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 1</h4>
+                        </div>
                     </div>
-                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
-                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 1</h4>
+                    <div class="branch-info-wrapper">
+                        <div class="p-8 md:p-10 w-full min-w-[280px]">
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 1</h4>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Yangon, Myanmar</p>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Branch 2 Photo Card -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
-                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
-                        <img src="https://placehold.co/800x600/FFD400/222222?text=Branch+2+Photo" alt="Branch 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="branch-card bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover transition-shadow">
+                    <div class="branch-img-wrapper relative overflow-hidden cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="https://placehold.co/800x600/FFD400/222222?text=Branch+2+Photo" alt="Branch 2" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 2</h4>
+                        </div>
                     </div>
-                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
-                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 2</h4>
+                    <div class="branch-info-wrapper">
+                        <div class="p-8 md:p-10 w-full min-w-[280px]">
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 2</h4>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Mandalay, Myanmar</p>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Branch 3 Photo Card -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
-                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
-                        <img src="https://placehold.co/800x600/222222/FFFFFF?text=Branch+3+Photo" alt="Branch 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="branch-card bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover transition-shadow">
+                    <div class="branch-img-wrapper relative overflow-hidden cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="https://placehold.co/800x600/222222/FFFFFF?text=Branch+3+Photo" alt="Branch 3" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 3</h4>
+                        </div>
                     </div>
-                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
-                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 3</h4>
+                    <div class="branch-info-wrapper">
+                        <div class="p-8 md:p-10 w-full min-w-[280px]">
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 3</h4>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Sagaing, Myanmar</p>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Branch 4 Photo Card -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
-                    <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-100 relative overflow-hidden">
-                        <img src="https://placehold.co/800x600/F9F9F9/FF6600?text=Branch+4+Photo" alt="Branch 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="branch-card bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover transition-shadow">
+                    <div class="branch-img-wrapper relative overflow-hidden cursor-pointer group" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="https://placehold.co/800x600/F9F9F9/FF6600?text=Branch+4+Photo" alt="Branch 4" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 4</h4>
+                        </div>
                     </div>
-                    <div class="p-4 border-t-4 border-hbBlack bg-hbLight text-center">
-                        <h4 class="font-display font-bold text-xl text-hbBlack">Branch 4</h4>
+                    <div class="branch-info-wrapper">
+                        <div class="p-8 md:p-10 w-full min-w-[280px]">
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 4</h4>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Nay Pyi Taw, Myanmar</p>
+                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1603,6 +1695,21 @@
                 document.body.style.overflow = ''; // Restore background scrolling
             }, 300);
         }
+
+        // Branch Scroll Animation Observer
+        const branchObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('branch-active');
+                } else {
+                    entry.target.classList.remove('branch-active');
+                }
+            });
+        }, { threshold: 0.5 }); // Triggers when 50% of the card is visible
+
+        document.querySelectorAll('.branch-card').forEach(card => {
+            branchObserver.observe(card);
+        });
 
     </script>
 </body>
