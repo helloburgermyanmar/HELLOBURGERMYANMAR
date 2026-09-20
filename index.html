@@ -44,6 +44,11 @@
             color: #222222;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         .nav-link {
             position: relative;
             display: inline-block;
@@ -366,8 +371,48 @@
         .extra-price { 
             color: #FF6600; 
             font-size: 14px; 
-            font-weight: 700; 
+            font-weight: 700 !important; 
             font-family: 'JtGilboys', sans-serif; 
+            letter-spacing: 2px !important;
+            text-transform: uppercase !important;
+        }
+
+        /* Menu Staggered Animation */
+        @keyframes fadeInUpStagger {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-on-scroll {
+            opacity: 0; 
+        }
+        .animate-on-scroll.is-visible {
+            animation: fadeInUpStagger 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Click Pop-up Animation */
+        @keyframes categoryPopUp {
+            0% { 
+                transform: scale(0.7) translateY(40px); 
+                opacity: 0; 
+            }
+            60% { 
+                transform: scale(1.03) translateY(-10px); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: scale(1) translateY(0); 
+                opacity: 1; 
+            }
+        }
+        .pop-trigger {
+            animation: categoryPopUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+            opacity: 0;
         }
     </style>
 </head>
@@ -437,7 +482,7 @@
 
     <section id="home" class="page-section hidden bg-[#FFF9F5] overflow-x-hidden">
         <!-- Slider Container -->
-        <div class="relative w-full h-[60vh] md:h-[80vh] pt-20 overflow-hidden bg-hbBlack">
+        <div class="relative w-full h-screen pt-20 overflow-hidden bg-hbBlack">
             <!-- Slider Track -->
             <div id="home-slider-track" class="flex w-full h-full transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
@@ -1411,6 +1456,15 @@
                     const yOffset = -140; 
                     const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
                     window.scrollTo({top: y, behavior: 'smooth'});
+
+                    // Trigger cool pop-up animation for items in the clicked category
+                    const animatedItems = targetSection.querySelectorAll('.menu-item, .extra-box');
+                    animatedItems.forEach((item, idx) => {
+                        item.classList.remove('pop-trigger', 'is-visible');
+                        void item.offsetWidth; // Trigger DOM reflow to restart animation
+                        item.classList.add('pop-trigger');
+                        item.style.animationDelay = `${idx * 60}ms`;
+                    });
                 };
                 categoryTabsContainer.appendChild(tab);
 
@@ -1426,9 +1480,10 @@
                     const hListDiv = document.createElement('div');
                     hListDiv.className = 'extras-container';
 
-                    section.items.forEach(item => {
+                    section.items.forEach((item, index) => {
                         const box = document.createElement('div');
-                        box.className = 'extra-box';
+                        box.className = 'extra-box animate-on-scroll';
+                        box.style.animationDelay = `${index * 100}ms`;
                         box.innerHTML = `
                             <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/100x100/FFD400/222222?text=Extra'" loading="lazy">
                             <span class="extra-name">${item.name}</span>
@@ -1441,9 +1496,10 @@
                     const listDiv = document.createElement('div');
                     listDiv.className = 'menu-list';
 
-                    section.items.forEach(item => {
+                    section.items.forEach((item, index) => {
                         const itemCard = document.createElement('div');
-                        itemCard.className = 'menu-item';
+                        itemCard.className = 'menu-item animate-on-scroll';
+                        itemCard.style.animationDelay = `${index * 75}ms`;
 
                         const priceDisplay = item.originalPrice 
                             ? `<div style="display: flex; flex-direction: column;">
@@ -1477,6 +1533,20 @@
 
         renderPromos();
         renderMenu();
+
+        // Menu Intersection Observer for Staggered Animation
+        const menuObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            menuObserver.observe(el);
+        });
 
         // Menu Scroll Spy
         window.addEventListener('scroll', () => {
