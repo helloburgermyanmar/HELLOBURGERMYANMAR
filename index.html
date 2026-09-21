@@ -750,27 +750,27 @@
 
     <section id="home" class="page-section hidden bg-[#FFF9F5] overflow-x-hidden">
         <!-- Slider Container -->
-        <div class="relative w-full h-[100dvh] pt-20 overflow-hidden bg-hbBlack flex flex-col justify-center">
+        <div class="relative w-full h-[100dvh] overflow-hidden bg-hbBlack">
             <!-- Slider Track -->
             <div id="home-slider-track" class="flex w-full h-full transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
                 <!-- Slide 1 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
                     <!-- TODO: Replace placeholder with your actual image 1 -->
-                    <!-- Mobile တွင် ပုံအပြည့်ပေါ်စေရန် object-contain သုံးထားပြီး PC တွင် object-cover ဖြစ်ပါမည် -->
-                    <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="w-full h-full object-contain md:object-cover object-center pointer-events-none">
+                    <!-- နေရာလွတ်လုံးဝမကျန်စေရန် absolute နှင့် object-cover ကို ပြင်ဆင်အသုံးပြုထားပါသည် -->
+                    <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
                 <!-- Slide 2 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
                     <!-- TODO: Replace placeholder with your actual image 2 -->
-                    <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="w-full h-full object-contain md:object-cover object-center pointer-events-none">
+                    <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
                 <!-- Slide 3 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
                     <!-- TODO: Replace placeholder with your actual image 3 -->
-                    <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="w-full h-full object-contain md:object-cover object-center pointer-events-none">
+                    <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
             </div>
@@ -1064,6 +1064,11 @@
     <section id="contact" class="page-section hidden pt-32 pb-20 bg-white min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
+                <!-- Mascot Image Placeholder -->
+                <div class="flex justify-center mb-6">
+                    <img src="mascot.png" alt="Mascot" class="w-32 md:w-48 h-auto animate-[floating_3s_ease-in-out_infinite] drop-shadow-2xl" onerror="this.src='https://placehold.co/200x200/FFD400/222222?text=Mascot'">
+                </div>
+                
                 <h2 class="font-display font-bold text-xl text-hbOrange uppercase tracking-wide mb-2">Contact Us</h2>
                 <h3 class="text-4xl md:text-5xl font-display font-bold text-hbBlack mb-4">Get In Touch</h3>
                 <p class="text-gray-600 max-w-2xl mx-auto text-lg font-medium">Have questions or want to leave feedback? Send us a message or connect via our social channels.</p>
