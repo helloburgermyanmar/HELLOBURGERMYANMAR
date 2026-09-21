@@ -415,81 +415,6 @@
             opacity: 0;
         }
 
-        /* Branch Scroll Animation */
-        .branch-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 2rem;
-            gap: 1.5rem;
-        }
-        .branch-img-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #fff;
-            border: 4px solid #222222;
-            border-radius: 1rem;
-            box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .branch-info-wrapper {
-            width: 100%;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            background-color: transparent; /* No background */
-            display: flex;
-            align-items: center;
-        }
-        .branch-title-overlay {
-            transition: opacity 0.5s ease;
-        }
-        
-        /* Mobile Active State */
-        .branch-card.branch-active .branch-img-wrapper {
-            width: 85%; /* Shrinks proportionally without losing aspect ratio */
-            box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
-        }
-        .branch-card.branch-active .branch-info-wrapper {
-            max-height: 300px;
-            opacity: 1;
-        }
-        .branch-card.branch-active .branch-title-overlay {
-            opacity: 0;
-        }
-
-        /* PC Active State */
-        @media (min-width: 768px) {
-            .branch-card {
-                flex-direction: row;
-                gap: 0;
-                margin-bottom: 4rem;
-            }
-            .branch-img-wrapper {
-                width: 100%;
-                transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            }
-            .branch-info-wrapper {
-                width: 0%;
-                max-height: none;
-                transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), padding-left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            }
-            .branch-card.branch-active .branch-img-wrapper {
-                width: 55%; /* Shrinks proportionally sideways */
-            }
-            .branch-card.branch-active .branch-info-wrapper {
-                width: 45%;
-                opacity: 1;
-                padding-left: 3rem; /* Empty space created automatically */
-            }
-        }
-
         /* Home Pop Scale Animation */
         .home-pop-element {
             transform: scale(0);
@@ -512,6 +437,7 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             background-color: #fff;
+            border: 4px solid #222222;
             border-radius: 1rem;
             box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
             position: relative;
@@ -544,7 +470,7 @@
                 transform-origin: top center;
             }
             .branch-info-wrapper {
-                top: 65%;
+                top: 65%; /* ဓာတ်ပုံနည်းနည်းပိုကြီးသွားလို့ စာနေရာနည်းနည်းဆင်းပေးတာပါ */
                 left: 0;
                 width: 100%;
                 display: flex;
@@ -579,99 +505,12 @@
             .branch-info-wrapper {
                 right: 0;
                 top: 50%;
-                width: 35%; /* စာနေရာ */
-                transform: translateY(-50%) translateX(20px);
-                padding-left: 1rem;
-            }
-            .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.92); /* ၈၅% အစား ၉၂% အထိ အများကြီး ပိုကြီးပေးလိုက်ပါပြီ */
-            }
-            .branch-card.branch-active .branch-info-wrapper {
-                opacity: 1;
-                pointer-events: auto;
-                transform: translateY(-50%) translateX(0);
-            }
-            .branch-card.branch-active .branch-title-overlay {
-                opacity: 0;
-            }
-        }
-
-        /* Home Pop Scale Animation */
-            border: 4px solid #222222;
-            border-radius: 1rem;
-            box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
-            position: relative;
-            overflow: hidden;
-            /* Width အစား Transform ကိုသုံး၍ Smooth ဖြစ်စေခြင်း */
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
-            will-change: transform;
-            z-index: 2;
-        }
-        .branch-info-wrapper {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 1;
-            display: flex;
-            align-items: center;
-        }
-        .branch-title-overlay {
-            transition: opacity 0.5s ease;
-        }
-        
-        /* Mobile Active State */
-        @media (max-width: 767px) {
-            .branch-card {
-                aspect-ratio: 1 / 1;
-                align-items: flex-start;
-            }
-            .branch-img-wrapper {
-                transform-origin: top center;
-            }
-            .branch-info-wrapper {
-                top: 65%; /* ဓာတ်ပုံနည်းနည်းပိုကြီးသွားလို့ စာနေရာနည်းနည်းဆင်းပေးတာပါ */
-                left: 0;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                transform: translateY(20px);
-            }
-            .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.9); /* ပုံကို ၈၅% အစား ၉၀% အထိ ကြီးကြီးလေးထားလိုက်ပါပြီ */
-                box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
-            }
-            .branch-card.branch-active .branch-info-wrapper {
-                opacity: 1;
-                pointer-events: auto;
-                transform: translateY(0);
-            }
-            .branch-card.branch-active .branch-title-overlay {
-                opacity: 0;
-            }
-        }
-
-        /* PC Active State */
-        @media (min-width: 768px) {
-            .branch-card {
-                margin-bottom: 4rem;
-                aspect-ratio: 16 / 9; /* Height လုံးဝမပြောင်းလဲစေရန် Lock ချခြင်း */
-            }
-            .branch-img-wrapper {
-                transform-origin: left center;
-            }
-            .branch-info-wrapper {
-                right: 0;
-                top: 50%;
                 width: 40%; /* စာနေရာ နည်းနည်းလျော့ပေးလိုက်ပါတယ် */
                 transform: translateY(-50%) translateX(20px);
                 padding-left: 1rem;
             }
             .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.85); /* ၅၅% အစား ၈၅% အထိ အတော်လေး ကြီးပေးလိုက်ပါပြီ */
+                transform: scale(0.92); /* ၅၅% အစား ၉၂% အထိ အတော်လေး ကြီးပေးလိုက်ပါပြီ */
             }
             .branch-card.branch-active .branch-info-wrapper {
                 opacity: 1;
@@ -750,26 +589,27 @@
 
     <section id="home" class="page-section hidden bg-[#FFF9F5] overflow-x-hidden">
         <!-- Slider Container -->
-        <div class="relative w-full h-screen pt-20 overflow-hidden bg-hbBlack">
+        <div class="relative w-full h-[100dvh] pt-20 overflow-hidden bg-hbBlack flex flex-col justify-center">
             <!-- Slider Track -->
             <div id="home-slider-track" class="flex w-full h-full transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
                 <!-- Slide 1 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
                     <!-- TODO: Replace placeholder with your actual image 1 -->
-                    <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="w-full h-full object-cover object-center pointer-events-none">
+                    <!-- Mobile တွင် ပုံအပြည့်ပေါ်စေရန် object-contain သုံးထားပြီး PC တွင် object-cover ဖြစ်ပါမည် -->
+                    <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="w-full h-full object-contain md:object-cover object-center pointer-events-none">
                 </div>
                 
                 <!-- Slide 2 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
                     <!-- TODO: Replace placeholder with your actual image 2 -->
-                    <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="w-full h-full object-cover object-center pointer-events-none">
+                    <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="w-full h-full object-contain md:object-cover object-center pointer-events-none">
                 </div>
                 
                 <!-- Slide 3 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
                     <!-- TODO: Replace placeholder with your actual image 3 -->
-                    <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="w-full h-full object-cover object-center pointer-events-none">
+                    <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="w-full h-full object-contain md:object-cover object-center pointer-events-none">
                 </div>
                 
             </div>
@@ -1143,6 +983,7 @@
             </div>
         </div>
     </section>
+
     <section id="about" class="page-section hidden relative bg-[#0a0908] flex flex-col items-center overflow-hidden py-24 z-0">
         <!-- Nostalgic Vignette Overlay -->
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0908_100%)] pointer-events-none z-10"></div>
@@ -1309,7 +1150,6 @@
             </div>
         </div>
     </section>
-
 
     <footer class="bg-hbBlack text-white pt-16 pb-8 border-t-8 border-hbOrange relative overflow-hidden mt-auto w-full z-10">
         <!-- Background decorative effects -->
