@@ -473,10 +473,12 @@
             }
             .branch-img-wrapper {
                 width: 100%;
+                transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             }
             .branch-info-wrapper {
                 width: 0%;
                 max-height: none;
+                transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), padding-left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             }
             .branch-card.branch-active .branch-img-wrapper {
                 width: 55%; /* Shrinks proportionally sideways */
@@ -485,6 +487,199 @@
                 width: 45%;
                 opacity: 1;
                 padding-left: 3rem; /* Empty space created automatically */
+            }
+        }
+
+        /* Home Pop Scale Animation */
+        .home-pop-element {
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform;
+        }
+        .home-pop-element.is-popped {
+            transform: scale(1);
+        }
+
+        /* Branch Scroll Animation */
+        .branch-card {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 2rem;
+            position: relative; /* Animation နေရာမရွေ့စေရန် Lock ချထားခြင်း */
+        }
+        .branch-img-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #fff;
+            border-radius: 1rem;
+            box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            will-change: transform;
+            z-index: 2;
+        }
+        .branch-info-wrapper {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 3; /* ပုံအကြီးဖြစ်သွားလျှင် စာကိုဖုံးမသွားစေရန် z-index 3 ပြောင်းထားပါသည် */
+            display: flex;
+            align-items: center;
+        }
+        .branch-title-overlay {
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Mobile Active State */
+        @media (max-width: 767px) {
+            .branch-card {
+                aspect-ratio: 1 / 1;
+                align-items: flex-start;
+            }
+            .branch-img-wrapper {
+                transform-origin: top center;
+            }
+            .branch-info-wrapper {
+                top: 65%;
+                left: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                transform: translateY(20px);
+            }
+            .branch-card.branch-active .branch-img-wrapper {
+                transform: scale(0.96); /* ၉၀% အစား ၉၆% အထိ ပိုကြီးပေးလိုက်ပါပြီ */
+                box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
+            }
+            .branch-card.branch-active .branch-info-wrapper {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+            .branch-card.branch-active .branch-title-overlay {
+                opacity: 0;
+            }
+        }
+
+        /* PC Active State */
+        @media (min-width: 768px) {
+            .branch-card {
+                margin-bottom: 4rem;
+                aspect-ratio: 16 / 9; /* Height လုံးဝမပြောင်းလဲစေရန် Lock ချခြင်း */
+            }
+            .branch-img-wrapper {
+                transform-origin: left center;
+            }
+            .branch-info-wrapper {
+                right: 0;
+                top: 50%;
+                width: 35%; /* စာနေရာ */
+                transform: translateY(-50%) translateX(20px);
+                padding-left: 1rem;
+            }
+            .branch-card.branch-active .branch-img-wrapper {
+                transform: scale(0.92); /* ၈၅% အစား ၉၂% အထိ အများကြီး ပိုကြီးပေးလိုက်ပါပြီ */
+            }
+            .branch-card.branch-active .branch-info-wrapper {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(-50%) translateX(0);
+            }
+            .branch-card.branch-active .branch-title-overlay {
+                opacity: 0;
+            }
+        }
+
+        /* Home Pop Scale Animation */
+            border: 4px solid #222222;
+            border-radius: 1rem;
+            box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
+            position: relative;
+            overflow: hidden;
+            /* Width အစား Transform ကိုသုံး၍ Smooth ဖြစ်စေခြင်း */
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            will-change: transform;
+            z-index: 2;
+        }
+        .branch-info-wrapper {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        .branch-title-overlay {
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Mobile Active State */
+        @media (max-width: 767px) {
+            .branch-card {
+                aspect-ratio: 1 / 1;
+                align-items: flex-start;
+            }
+            .branch-img-wrapper {
+                transform-origin: top center;
+            }
+            .branch-info-wrapper {
+                top: 65%; /* ဓာတ်ပုံနည်းနည်းပိုကြီးသွားလို့ စာနေရာနည်းနည်းဆင်းပေးတာပါ */
+                left: 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                transform: translateY(20px);
+            }
+            .branch-card.branch-active .branch-img-wrapper {
+                transform: scale(0.9); /* ပုံကို ၈၅% အစား ၉၀% အထိ ကြီးကြီးလေးထားလိုက်ပါပြီ */
+                box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
+            }
+            .branch-card.branch-active .branch-info-wrapper {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+            .branch-card.branch-active .branch-title-overlay {
+                opacity: 0;
+            }
+        }
+
+        /* PC Active State */
+        @media (min-width: 768px) {
+            .branch-card {
+                margin-bottom: 4rem;
+                aspect-ratio: 16 / 9; /* Height လုံးဝမပြောင်းလဲစေရန် Lock ချခြင်း */
+            }
+            .branch-img-wrapper {
+                transform-origin: left center;
+            }
+            .branch-info-wrapper {
+                right: 0;
+                top: 50%;
+                width: 40%; /* စာနေရာ နည်းနည်းလျော့ပေးလိုက်ပါတယ် */
+                transform: translateY(-50%) translateX(20px);
+                padding-left: 1rem;
+            }
+            .branch-card.branch-active .branch-img-wrapper {
+                transform: scale(0.85); /* ၅၅% အစား ၈၅% အထိ အတော်လေး ကြီးပေးလိုက်ပါပြီ */
+            }
+            .branch-card.branch-active .branch-info-wrapper {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(-50%) translateX(0);
+            }
+            .branch-card.branch-active .branch-title-overlay {
+                opacity: 0;
             }
         }
     </style>
@@ -613,27 +808,35 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <!-- Best Seller Item 1 -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                    <!-- TODO: Replace with your actual Best Seller 1 image -->
-                    <img src="https://placehold.co/400x400/FF6600/FFFFFF?text=Add+Image+1" alt="Best Seller 1" class="w-full h-full object-cover">
+                <div class="home-pop-element">
+                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                        <!-- TODO: Replace with your actual Best Seller 1 image -->
+                        <img src="https://placehold.co/400x400/FF6600/FFFFFF?text=Add+Image+1" alt="Best Seller 1" class="w-full h-full object-cover">
+                    </div>
                 </div>
 
                 <!-- Best Seller Item 2 -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                    <!-- TODO: Replace with your actual Best Seller 2 image -->
-                    <img src="https://placehold.co/400x400/FFD400/222222?text=Add+Image+2" alt="Best Seller 2" class="w-full h-full object-cover">
+                <div class="home-pop-element">
+                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                        <!-- TODO: Replace with your actual Best Seller 2 image -->
+                        <img src="https://placehold.co/400x400/FFD400/222222?text=Add+Image+2" alt="Best Seller 2" class="w-full h-full object-cover">
+                    </div>
                 </div>
 
                 <!-- Best Seller Item 3 -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                    <!-- TODO: Replace with your actual Best Seller 3 image -->
-                    <img src="https://placehold.co/400x400/222222/FFFFFF?text=Add+Image+3" alt="Best Seller 3" class="w-full h-full object-cover">
+                <div class="home-pop-element">
+                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                        <!-- TODO: Replace with your actual Best Seller 3 image -->
+                        <img src="https://placehold.co/400x400/222222/FFFFFF?text=Add+Image+3" alt="Best Seller 3" class="w-full h-full object-cover">
+                    </div>
                 </div>
 
                 <!-- Best Seller Item 4 -->
-                <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                    <!-- TODO: Replace with your actual Best Seller 4 image -->
-                    <img src="https://placehold.co/400x400/F9F9F9/FF6600?text=Add+Image+4" alt="Best Seller 4" class="w-full h-full object-cover">
+                <div class="home-pop-element">
+                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                        <!-- TODO: Replace with your actual Best Seller 4 image -->
+                        <img src="https://placehold.co/400x400/F9F9F9/FF6600?text=Add+Image+4" alt="Best Seller 4" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
             
@@ -728,10 +931,10 @@
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
+                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 1</h4>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Yangon, Myanmar</p>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                            <!-- လိပ်စာ ပြင်ရန် -->
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Yangon, Myanmar</p>
                         </div>
                     </div>
                 </div>
@@ -746,10 +949,10 @@
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
+                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 2</h4>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Mandalay, Myanmar</p>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                            <!-- လိပ်စာ ပြင်ရန် -->
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Mandalay, Myanmar</p>
                         </div>
                     </div>
                 </div>
@@ -764,10 +967,10 @@
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
+                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 3</h4>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Sagaing, Myanmar</p>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                            <!-- လိပ်စာ ပြင်ရန် -->
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Sagaing, Myanmar</p>
                         </div>
                     </div>
                 </div>
@@ -782,10 +985,10 @@
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
+                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 4</h4>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Nay Pyi Taw, Myanmar</p>
-                            <p class="text-hbBlack font-bold mb-4 flex items-center gap-4"><i class="fas fa-phone text-2xl text-hbYellow w-6"></i> 09 968 885 291</p>
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-clock text-2xl text-hbYellow w-6"></i> 9:00 AM - 9:00 PM</p>
+                            <!-- လိပ်စာ ပြင်ရန် -->
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Nay Pyi Taw, Myanmar</p>
                         </div>
                     </div>
                 </div>
@@ -1639,15 +1842,29 @@
         renderPromos();
         renderMenu();
 
-        // Menu Intersection Observer for Staggered Animation
-        const menuObserver = new IntersectionObserver((entries, observer) => {
+        // Menu Intersection Observer for Dynamic Staggered Scale Animation
+        let delayCounter = 0;
+        let delayTimer = null;
+
+        const menuObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // မြင်ကွင်းထဲ ဝင်လာတဲ့အကွက်တွေကို တစ်ခုပြီးတစ်ခု အချိန်ခွာပြီး ပေါ်စေခြင်း
+                    entry.target.style.animationDelay = `${delayCounter * 100}ms`;
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+                    delayCounter++;
+                    
+                    clearTimeout(delayTimer);
+                    delayTimer = setTimeout(() => {
+                        delayCounter = 0;
+                    }, 150);
+                } else {
+                    // မြင်ကွင်းထဲက ထွက်သွားတာနဲ့ အစကနေ ပြန်ပေါ်ဖို့ Reset ချပေးခြင်း
+                    entry.target.classList.remove('is-visible', 'pop-trigger');
+                    entry.target.style.animationDelay = '0ms'; 
                 }
             });
-        }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+        }, { rootMargin: '0px 0px -20px 0px', threshold: 0 });
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             menuObserver.observe(el);
@@ -1722,10 +1939,25 @@
                     entry.target.classList.remove('branch-active');
                 }
             });
-        }, { threshold: 0.6 }); // Triggers when 60% of the card is clearly visible
+        }, { threshold: 0.3 }); // Lowered threshold to prevent infinite loop jumpiness
 
         branchCards.forEach(card => {
             branchObserver.observe(card);
+        });
+
+        // Home Images Scale Animation Observer (0% to 100% Infinitely)
+        const homePopObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-popped');
+                } else {
+                    entry.target.classList.remove('is-popped'); // Resets to 0% when out of view
+                }
+            });
+        }, { threshold: 0.1 }); // Triggers when 10% of the image is visible
+
+        document.querySelectorAll('.home-pop-element').forEach(el => {
+            homePopObserver.observe(el);
         });
 
     </script>
