@@ -138,7 +138,7 @@
             border-bottom: 3px solid #222222;
             padding: 15px;
             position: sticky;
-            top: 80px; /* Aligned below navbar */
+            top: 80px;
             z-index: 40;
         }
 
@@ -377,7 +377,6 @@
             text-transform: uppercase !important;
         }
 
-        /* Menu Staggered Animation */
         @keyframes fadeInUpStagger {
             0% {
                 opacity: 0;
@@ -395,7 +394,6 @@
             animation: fadeInUpStagger 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* Click Pop-up Animation */
         @keyframes categoryPopUp {
             0% { 
                 transform: scale(0.7) translateY(40px); 
@@ -415,82 +413,6 @@
             opacity: 0;
         }
 
-        /* Branch Scroll Animation */
-        .branch-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 2rem;
-            gap: 1.5rem;
-        }
-        .branch-img-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #fff;
-            border: 4px solid #222222;
-            border-radius: 1rem;
-            box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .branch-info-wrapper {
-            width: 100%;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            background-color: transparent; /* No background */
-            display: flex;
-            align-items: center;
-        }
-        .branch-title-overlay {
-            transition: opacity 0.5s ease;
-        }
-        
-        /* Mobile Active State */
-        .branch-card.branch-active .branch-img-wrapper {
-            width: 85%; /* Shrinks proportionally without losing aspect ratio */
-            box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
-        }
-        .branch-card.branch-active .branch-info-wrapper {
-            max-height: 300px;
-            opacity: 1;
-        }
-        .branch-card.branch-active .branch-title-overlay {
-            opacity: 0;
-        }
-
-        /* PC Active State */
-        @media (min-width: 768px) {
-            .branch-card {
-                flex-direction: row;
-                gap: 0;
-                margin-bottom: 4rem;
-            }
-            .branch-img-wrapper {
-                width: 100%;
-                transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            }
-            .branch-info-wrapper {
-                width: 0%;
-                max-height: none;
-                transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), padding-left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            }
-            .branch-card.branch-active .branch-img-wrapper {
-                width: 55%; /* Shrinks proportionally sideways */
-            }
-            .branch-card.branch-active .branch-info-wrapper {
-                width: 45%;
-                opacity: 1;
-                padding-left: 3rem; /* Empty space created automatically */
-            }
-        }
-
-        /* Home Pop Scale Animation */
         .home-pop-element {
             transform: scale(0);
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -500,13 +422,12 @@
             transform: scale(1);
         }
 
-        /* Branch Scroll Animation */
         .branch-card {
             display: flex;
             align-items: center;
             width: 100%;
             margin-bottom: 2rem;
-            position: relative; /* Animation နေရာမရွေ့စေရန် Lock ချထားခြင်း */
+            position: relative;
         }
         .branch-img-wrapper {
             width: 100%;
@@ -526,7 +447,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 3; /* ပုံအကြီးဖြစ်သွားလျှင် စာကိုဖုံးမသွားစေရန် z-index 3 ပြောင်းထားပါသည် */
+            z-index: 3;
             display: flex;
             align-items: center;
         }
@@ -554,7 +475,7 @@
                 transform: translateY(20px);
             }
             .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.96); /* ၉၀% အစား ၉၆% အထိ ပိုကြီးပေးလိုက်ပါပြီ */
+                transform: scale(0.96);
                 box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
             }
             .branch-card.branch-active .branch-info-wrapper {
@@ -571,7 +492,7 @@
         @media (min-width: 768px) {
             .branch-card {
                 margin-bottom: 4rem;
-                aspect-ratio: 16 / 9; /* Height လုံးဝမပြောင်းလဲစေရန် Lock ချခြင်း */
+                aspect-ratio: 16 / 9;
             }
             .branch-img-wrapper {
                 transform-origin: left center;
@@ -579,99 +500,12 @@
             .branch-info-wrapper {
                 right: 0;
                 top: 50%;
-                width: 35%; /* စာနေရာ */
+                width: 35%;
                 transform: translateY(-50%) translateX(20px);
                 padding-left: 1rem;
             }
             .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.92); /* ၈၅% အစား ၉၂% အထိ အများကြီး ပိုကြီးပေးလိုက်ပါပြီ */
-            }
-            .branch-card.branch-active .branch-info-wrapper {
-                opacity: 1;
-                pointer-events: auto;
-                transform: translateY(-50%) translateX(0);
-            }
-            .branch-card.branch-active .branch-title-overlay {
-                opacity: 0;
-            }
-        }
-
-        /* Home Pop Scale Animation */
-            border: 4px solid #222222;
-            border-radius: 1rem;
-            box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
-            position: relative;
-            overflow: hidden;
-            /* Width အစား Transform ကိုသုံး၍ Smooth ဖြစ်စေခြင်း */
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
-            will-change: transform;
-            z-index: 2;
-        }
-        .branch-info-wrapper {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 1;
-            display: flex;
-            align-items: center;
-        }
-        .branch-title-overlay {
-            transition: opacity 0.5s ease;
-        }
-        
-        /* Mobile Active State */
-        @media (max-width: 767px) {
-            .branch-card {
-                aspect-ratio: 1 / 1;
-                align-items: flex-start;
-            }
-            .branch-img-wrapper {
-                transform-origin: top center;
-            }
-            .branch-info-wrapper {
-                top: 65%; /* ဓာတ်ပုံနည်းနည်းပိုကြီးသွားလို့ စာနေရာနည်းနည်းဆင်းပေးတာပါ */
-                left: 0;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                transform: translateY(20px);
-            }
-            .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.9); /* ပုံကို ၈၅% အစား ၉၀% အထိ ကြီးကြီးလေးထားလိုက်ပါပြီ */
-                box-shadow: 4px 4px 0px 0px rgba(34, 34, 34, 1);
-            }
-            .branch-card.branch-active .branch-info-wrapper {
-                opacity: 1;
-                pointer-events: auto;
-                transform: translateY(0);
-            }
-            .branch-card.branch-active .branch-title-overlay {
-                opacity: 0;
-            }
-        }
-
-        /* PC Active State */
-        @media (min-width: 768px) {
-            .branch-card {
-                margin-bottom: 4rem;
-                aspect-ratio: 16 / 9; /* Height လုံးဝမပြောင်းလဲစေရန် Lock ချခြင်း */
-            }
-            .branch-img-wrapper {
-                transform-origin: left center;
-            }
-            .branch-info-wrapper {
-                right: 0;
-                top: 50%;
-                width: 40%; /* စာနေရာ နည်းနည်းလျော့ပေးလိုက်ပါတယ် */
-                transform: translateY(-50%) translateX(20px);
-                padding-left: 1rem;
-            }
-            .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.85); /* ၅၅% အစား ၈၅% အထိ အတော်လေး ကြီးပေးလိုက်ပါပြီ */
+                transform: scale(0.92);
             }
             .branch-card.branch-active .branch-info-wrapper {
                 opacity: 1;
@@ -749,28 +583,25 @@
     </nav>
 
     <section id="home" class="page-section hidden bg-[#FFF9F5] overflow-x-hidden">
-        <!-- Slider Container -->
-        <div class="relative w-full h-[100dvh] pt-20 overflow-hidden bg-hbBlack flex flex-col justify-center">
+        <!-- Slider Container: Removed pt-20 to ensure no black frame at the top, h-[100dvh] forces true full screen -->
+        <div class="relative w-full h-[100dvh] overflow-hidden bg-hbBlack">
             <!-- Slider Track -->
             <div id="home-slider-track" class="flex w-full h-full transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
                 <!-- Slide 1 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- TODO: Replace placeholder with your actual image 1 -->
-                    <!-- Mobile နှင့် PC နှစ်ခုလုံးတွင် အပေါ်အောက် နေရာလွတ်မကျန်စေရန် object-cover အား အသုံးပြုထားပါသည် -->
-                    <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="w-full h-full object-cover object-center pointer-events-none">
+                    <!-- absolute inset-0 ensure the image stretches perfectly without gaps -->
+                    <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
                 <!-- Slide 2 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- TODO: Replace placeholder with your actual image 2 -->
-                    <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="w-full h-full object-cover object-center pointer-events-none">
+                    <img src="https://placehold.co/1920x1080/FFD400/222222?text=Hero+Banner+2" alt="Hello Burger Slide 2" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
                 <!-- Slide 3 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- TODO: Replace placeholder with your actual image 3 -->
-                    <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="w-full h-full object-cover object-center pointer-events-none">
+                    <img src="https://placehold.co/1920x1080/222222/FFD400?text=Hero+Banner+3" alt="Hello Burger Slide 3" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
             </div>
@@ -811,7 +642,6 @@
                 <!-- Best Seller Item 1 -->
                 <div class="home-pop-element">
                     <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                        <!-- TODO: Replace with your actual Best Seller 1 image -->
                         <img src="https://placehold.co/400x400/FF6600/FFFFFF?text=Add+Image+1" alt="Best Seller 1" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -819,7 +649,6 @@
                 <!-- Best Seller Item 2 -->
                 <div class="home-pop-element">
                     <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                        <!-- TODO: Replace with your actual Best Seller 2 image -->
                         <img src="https://placehold.co/400x400/FFD400/222222?text=Add+Image+2" alt="Best Seller 2" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -827,7 +656,6 @@
                 <!-- Best Seller Item 3 -->
                 <div class="home-pop-element">
                     <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                        <!-- TODO: Replace with your actual Best Seller 3 image -->
                         <img src="https://placehold.co/400x400/222222/FFFFFF?text=Add+Image+3" alt="Best Seller 3" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -835,7 +663,6 @@
                 <!-- Best Seller Item 4 -->
                 <div class="home-pop-element">
                     <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
-                        <!-- TODO: Replace with your actual Best Seller 4 image -->
                         <img src="https://placehold.co/400x400/F9F9F9/FF6600?text=Add+Image+4" alt="Best Seller 4" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -851,16 +678,16 @@
         <!-- Facebook Video Highlight Section -->
         <div class="w-full pb-10 text-center mt-12">
             <div class="flex items-center gap-4 mb-8 justify-center px-4">
-            <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
-            <h3 class="font-display font-bold text-xl md:text-2xl text-hbBlack uppercase tracking-wide text-center">Catch Us In Action</h3>
-            <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
+                <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
+                <h3 class="font-display font-bold text-xl md:text-2xl text-hbBlack uppercase tracking-wide text-center">Catch Us In Action</h3>
+                <div class="w-16 h-1 bg-hbOrange rounded-full hidden sm:block"></div>
+            </div>
+            
+            <!-- Video Container -->
+            <div class="w-full max-w-5xl mx-auto aspect-video">
+                <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&width=auto&t=0&autoplay=1&mute=1" class="w-full h-full border-none overflow-hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
         </div>
-        
-        <!-- Video Container -->
-        <div class="w-full max-w-5xl mx-auto aspect-video">
-            <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&width=auto&t=0&autoplay=1&mute=1" class="w-full h-full border-none overflow-hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-        </div>
-    </div>
     </section>
 
     <section id="menu" class="page-section hidden pt-20 bg-[#FFF9F5] min-h-screen">
@@ -925,17 +752,15 @@
                 <!-- Branch 1 Photo Card -->
                 <div class="branch-card w-full">
                     <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src="https://placehold.co/800x600/FF6600/FFFFFF?text=Branch+1+Photo" alt="Branch 1" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="Branch 1.webp" alt="Branch 1" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
-                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 1</h4>
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">62 Branch</h4>
                         </div>
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
-                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
-                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 1</h4>
-                            <!-- လိပ်စာ ပြင်ရန် -->
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Yangon, Myanmar</p>
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">62 Branch</h4>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> 62st between 109st & 110st, Chanmyathazi Township, Mandalay.</p>
                         </div>
                     </div>
                 </div>
@@ -943,17 +768,15 @@
                 <!-- Branch 2 Photo Card -->
                 <div class="branch-card w-full">
                     <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src="https://placehold.co/800x600/FFD400/222222?text=Branch+2+Photo" alt="Branch 2" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="Branch 2.webp" alt="Branch 2" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
-                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 2</h4>
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">KoePay Branch</h4>
                         </div>
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
-                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
-                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 2</h4>
-                            <!-- လိပ်စာ ပြင်ရန် -->
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Mandalay, Myanmar</p>
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">KoePay Branch</h4>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Near KoePay Bridge.</p>
                         </div>
                     </div>
                 </div>
@@ -961,17 +784,15 @@
                 <!-- Branch 3 Photo Card -->
                 <div class="branch-card w-full">
                     <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src="https://placehold.co/800x600/222222/FFFFFF?text=Branch+3+Photo" alt="Branch 3" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="Branch 3.webp" alt="Branch 3" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
-                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 3</h4>
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Chin Su Branch</h4>
                         </div>
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
-                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
-                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 3</h4>
-                            <!-- လိပ်စာ ပြင်ရန် -->
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Sagaing, Myanmar</p>
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Chin Su Branch</h4>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Chin Su Road, Chin Su Ward, Sagaing.</p>
                         </div>
                     </div>
                 </div>
@@ -979,17 +800,15 @@
                 <!-- Branch 4 Photo Card -->
                 <div class="branch-card w-full">
                     <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src="https://placehold.co/800x600/F9F9F9/FF6600?text=Branch+4+Photo" alt="Branch 4" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="Branch 4.webp" alt="Branch 4" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
-                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Branch 4</h4>
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">73st Branch</h4>
                         </div>
                     </div>
                     <div class="branch-info-wrapper">
                         <div class="w-full min-w-[280px]">
-                            <!-- ဆိုင်ခွဲအမည် ပြင်ရန် -->
-                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Branch 4</h4>
-                            <!-- လိပ်စာ ပြင်ရန် -->
-                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Nay Pyi Taw, Myanmar</p>
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">73st Branch</h4>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> 73st between 37st & 38st, Maha Aung Myay Township, Mandalay</p>
                         </div>
                     </div>
                 </div>
@@ -1081,7 +900,6 @@
                     <h4 class="font-display font-bold text-2xl text-hbBlack mb-6">Send a Message</h4>
                     <!-- HTML Form using FormSubmit -->
                     <form action="https://formsubmit.co/helloburgermyanmar@gmail.com" method="POST" class="space-y-5" id="contact-form">
-                        <!-- Required fields to force FormSubmit activation -->
                         <input type="hidden" name="_subject" value="New Message from HELLO BURGER Website">
                         <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_template" value="table">
@@ -1149,6 +967,7 @@
             </div>
         </div>
     </section>
+    
     <section id="about" class="page-section hidden relative bg-[#0a0908] flex flex-col items-center overflow-hidden py-24 z-0">
         <!-- Nostalgic Vignette Overlay -->
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0908_100%)] pointer-events-none z-10"></div>
@@ -1315,7 +1134,6 @@
             </div>
         </div>
     </section>
-
 
     <footer class="bg-hbBlack text-white pt-16 pb-8 border-t-8 border-hbOrange relative overflow-hidden mt-auto w-full z-10">
         <!-- Background decorative effects -->
@@ -1487,7 +1305,6 @@
         // --- Loader Animation ---
         document.body.style.overflow = 'hidden';
         const textContainer = document.getElementById('intro-text-1');
-        // Separating specific Myanmar syllables carefully to avoid breaking font rendering
         const syllables = ["ဗိုက်", "စာ", "နေ", "ပြီ", "လား", "&nbsp;?"];
         
         syllables.forEach((syllable) => {
@@ -1521,12 +1338,11 @@
                 burger.classList.remove('scale-100');
                 burger.classList.add('scale-110', '-translate-y-4');
                 
-                // Staggered Pop-up Animation
                 chars.forEach((char, index) => {
                     setTimeout(() => {
                         char.classList.remove('opacity-0', 'scale-50', 'translate-y-12');
                         char.classList.add('opacity-100', 'scale-100', 'translate-y-0');
-                    }, index * 150); // Delay for each letter
+                    }, index * 150); 
                 });
                 
                 setTimeout(() => {
