@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Friendly, Bold, Juicy. Serving the best burgers with a smile across Myanmar.">
+    <meta name="theme-color" content="#FF6600">
     <title>HELLO BURGER | Friendly, Bold, Juicy</title>
+    
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:title" content="HELLO BURGER | Friendly, Bold, Juicy">
+    <meta property="og:description" content="Freshly prepared burgers, bold flavors and a simple promise — consistent quality and a satisfying HELLO BURGER experience every time.">
+    <meta property="og:type" content="website">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -424,9 +431,7 @@
 
         .branch-card {
             display: flex;
-            align-items: center;
             width: 100%;
-            margin-bottom: 2rem;
             position: relative;
         }
         .branch-img-wrapper {
@@ -437,13 +442,13 @@
             box-shadow: 8px 8px 0px 0px rgba(34, 34, 34, 1);
             position: relative;
             overflow: hidden;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Using width transition avoids overlapping by making real space for text */
+            transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             cursor: pointer;
-            will-change: transform;
+            will-change: transform, width;
             z-index: 2;
         }
         .branch-info-wrapper {
-            position: absolute;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
@@ -458,20 +463,19 @@
         /* Mobile Active State */
         @media (max-width: 767px) {
             .branch-card {
-                aspect-ratio: 1 / 1;
-                align-items: flex-start;
+                flex-direction: column; /* Vertical flow so they don't overlap */
+                margin-bottom: 3rem;
+                gap: 1.5rem;
             }
             .branch-img-wrapper {
                 transform-origin: top center;
             }
             .branch-info-wrapper {
-                top: 65%;
-                left: 0;
                 width: 100%;
+                justify-content: center;
+                position: static; /* Removes overlap */
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
-                text-align: center;
                 transform: translateY(20px);
             }
             .branch-card.branch-active .branch-img-wrapper {
@@ -492,20 +496,25 @@
         @media (min-width: 768px) {
             .branch-card {
                 margin-bottom: 4rem;
-                aspect-ratio: 16 / 9;
+                justify-content: flex-start;
+                align-items: center;
+                aspect-ratio: 16 / 9; /* Keeps height stable during width transition */
             }
             .branch-img-wrapper {
                 transform-origin: left center;
+                aspect-ratio: unset; /* Stops height from jumping when width changes */
+                height: 100%;
             }
             .branch-info-wrapper {
+                position: absolute;
                 right: 0;
                 top: 50%;
-                width: 35%;
-                transform: translateY(-50%) translateX(20px);
+                width: 38%; /* Exact width to fit in the empty space */
+                transform: translateY(-50%) translateX(40px);
                 padding-left: 1rem;
             }
             .branch-card.branch-active .branch-img-wrapper {
-                transform: scale(0.92);
+                width: 60%; /* Shrinks width to 60%, creating 40% empty space on the right */
             }
             .branch-card.branch-active .branch-info-wrapper {
                 opacity: 1;
@@ -515,6 +524,24 @@
             .branch-card.branch-active .branch-title-overlay {
                 opacity: 0;
             }
+        }
+
+        /* Marquee Styles */
+        .marquee-container {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+        .marquee-container:active {
+            cursor: grabbing;
+        }
+        .marquee-container::-webkit-scrollbar {
+            display: none;
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
         }
     </style>
 </head>
@@ -528,7 +555,7 @@
 
         <div id="loader-content" class="relative z-30 flex flex-col items-center w-full max-w-4xl px-4 transition-transform duration-1000 ease-out">
             <div id="burger-wrapper" class="relative transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform scale-50 -translate-y-20 opacity-0">
-                <img src="loading.png" alt="loading.png" class="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl animate-[floating_3s_ease-in-out_infinite] mx-auto">
+                <img src="loading.png" alt="Loading" class="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl animate-[floating_3s_ease-in-out_infinite] mx-auto">
             </div>
             
             <div class="mt-8 flex items-center justify-center w-full">
@@ -544,7 +571,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="#home" class="flex-shrink-0 flex items-center cursor-pointer block">
+                <a href="#home" class="flex-shrink-0 flex items-center cursor-pointer block" aria-label="Go to Home">
                     <img src="logo.png" alt="HB Logo" class="h-12 w-auto object-contain" onerror="this.src='https://placehold.co/100x100/FF6600/FFFFFF?text=HB'">
                 </a>
 
@@ -561,7 +588,7 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-hbBlack hover:text-hbOrange focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-hbBlack hover:text-hbOrange focus:outline-none" aria-label="Toggle Menu">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -583,14 +610,13 @@
     </nav>
 
     <section id="home" class="page-section hidden bg-[#FFF9F5] overflow-x-hidden">
-        <!-- Slider Container: Removed pt-20 to ensure no black frame at the top, h-[100dvh] forces true full screen -->
+        <!-- Slider Container -->
         <div class="relative w-full h-[100dvh] overflow-hidden bg-hbBlack">
             <!-- Slider Track -->
             <div id="home-slider-track" class="flex w-full h-full transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
                 <!-- Slide 1 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
-                    <!-- absolute inset-0 ensure the image stretches perfectly without gaps -->
                     <img src="Hello Burger Slide 1.webp" alt="Hello Burger Slide 1" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none">
                 </div>
                 
@@ -641,28 +667,28 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <!-- Best Seller Item 1 -->
                 <div class="home-pop-element">
-                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="https://placehold.co/400x400/FF6600/FFFFFF?text=Add+Image+1" alt="Best Seller 1" class="w-full h-full object-cover">
                     </div>
                 </div>
 
                 <!-- Best Seller Item 2 -->
                 <div class="home-pop-element">
-                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="https://placehold.co/400x400/FFD400/222222?text=Add+Image+2" alt="Best Seller 2" class="w-full h-full object-cover">
                     </div>
                 </div>
 
                 <!-- Best Seller Item 3 -->
                 <div class="home-pop-element">
-                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="https://placehold.co/400x400/222222/FFFFFF?text=Add+Image+3" alt="Best Seller 3" class="w-full h-full object-cover">
                     </div>
                 </div>
 
                 <!-- Best Seller Item 4 -->
                 <div class="home-pop-element">
-                    <div class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="bg-white border-4 border-hbBlack rounded-2xl overflow-hidden shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all cursor-pointer aspect-square" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="https://placehold.co/400x400/F9F9F9/FF6600?text=Add+Image+4" alt="Best Seller 4" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -685,7 +711,7 @@
             
             <!-- Video Container -->
             <div class="w-full max-w-5xl mx-auto aspect-video">
-                <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&width=auto&t=0&autoplay=1&mute=1" class="w-full h-full border-none overflow-hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&width=auto&t=0&autoplay=1&mute=1" class="w-full h-full border-none overflow-hidden" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
         </div>
     </section>
@@ -751,7 +777,7 @@
             <div class="flex flex-col gap-8 mb-20 max-w-5xl mx-auto">
                 <!-- Branch 1 Photo Card -->
                 <div class="branch-card w-full">
-                    <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="Branch 1.webp" alt="Branch 1" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
                             <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">62 Branch</h4>
@@ -767,7 +793,7 @@
 
                 <!-- Branch 2 Photo Card -->
                 <div class="branch-card w-full">
-                    <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="Branch 2.webp" alt="Branch 2" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
                             <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">KoePay Branch</h4>
@@ -783,7 +809,7 @@
 
                 <!-- Branch 3 Photo Card -->
                 <div class="branch-card w-full">
-                    <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="Branch 3.webp" alt="Branch 3" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
                             <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">Chin Su Branch</h4>
@@ -799,7 +825,7 @@
 
                 <!-- Branch 4 Photo Card -->
                 <div class="branch-card w-full">
-                    <div class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
+                    <div role="button" tabindex="0" class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
                         <img src="Branch 4.webp" alt="Branch 4" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
                             <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">73st Branch</h4>
@@ -814,49 +840,116 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group">
-                    <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
-                    <h4 class="font-display font-bold text-xl text-hbBlack">Yangon</h4>
-                    <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">5 Branches</span>
-                </div>
-                
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group">
-                    <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
-                    <h4 class="font-display font-bold text-xl text-hbBlack">Mandalay</h4>
-                    <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">5 Branches</span>
-                </div>
+            <!-- Future Expansion Plans Headline -->
+            <div class="text-center mt-12 mb-10">
+                <h3 class="text-3xl md:text-4xl font-display font-bold text-hbBlack uppercase tracking-wide">Our Future Expansion Plans</h3>
+                <div class="w-24 h-1 bg-hbOrange rounded-full mx-auto mt-4"></div>
+            </div>
 
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group">
-                    <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
-                    <h4 class="font-display font-bold text-xl text-hbBlack">Sagaing</h4>
-                    <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
-                </div>
+            <!-- Future Expansion Marquee Loop -->
+            <div class="marquee-container w-full mx-auto py-2 mb-10">
+                <div class="marquee-track">
+                    <!-- First Set -->
+                    <div class="flex gap-6 pr-6 min-w-max">
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Yangon</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">5 Branches</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Mandalay</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">5 Branches</span>
+                        </div>
 
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group">
-                    <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
-                    <h4 class="font-display font-bold text-xl text-hbBlack">Nay Pyi Taw</h4>
-                    <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
-                </div>
-                
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-gray-400 transition-colors">
-                    <h4 class="font-display font-bold text-lg text-hbBlack">Taunggyi</h4>
-                    <span class="text-sm text-gray-500 font-bold">2 Branches</span>
-                </div>
-                
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-gray-400 transition-colors">
-                    <h4 class="font-display font-bold text-lg text-hbBlack">Pyin Oo Lwin</h4>
-                    <span class="text-sm text-gray-500 font-bold">1 Branch</span>
-                </div>
-                
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-gray-400 transition-colors">
-                    <h4 class="font-display font-bold text-lg text-hbBlack">Bago</h4>
-                    <span class="text-sm text-gray-500 font-bold">1 Branch</span>
-                </div>
-                
-                <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-gray-400 transition-colors">
-                    <h4 class="font-display font-bold text-lg text-hbBlack">Myeik</h4>
-                    <span class="text-sm text-gray-500 font-bold">1 Branch</span>
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Sagaing</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
+                        </div>
+
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Nay Pyi Taw</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Taunggyi</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Pyin Oo Lwin</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">1 Branch</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Bago</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">1 Branch</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Myeik</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">1 Branch</span>
+                        </div>
+                    </div>
+
+                    <!-- Second Set (Duplicate for Loop) -->
+                    <div class="flex gap-6 pr-6 min-w-max">
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Yangon</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">5 Branches</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Mandalay</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">5 Branches</span>
+                        </div>
+
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Sagaing</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
+                        </div>
+
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Nay Pyi Taw</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Taunggyi</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">2 Branches</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Pyin Oo Lwin</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">1 Branch</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbOrange transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbOrange mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Bago</h4>
+                            <span class="inline-block mt-2 bg-hbOrange text-white text-xs font-bold px-3 py-1 rounded-full">1 Branch</span>
+                        </div>
+                        
+                        <div class="bg-hbLight border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-hbYellow transition-colors group w-44 md:w-52 flex-shrink-0 cursor-pointer">
+                            <i class="fas fa-map-location-dot text-3xl text-gray-400 group-hover:text-hbYellow mb-3 transition-colors"></i>
+                            <h4 class="font-display font-bold text-xl text-hbBlack">Myeik</h4>
+                            <span class="inline-block mt-2 bg-hbYellow text-hbBlack text-xs font-bold px-3 py-1 rounded-full">1 Branch</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -954,11 +1047,11 @@
                         <div class="pt-6 mt-6 border-t-2 border-gray-200">
                             <h5 class="font-display font-bold text-sm text-gray-500 uppercase mb-4">Follow & Join Us</h5>
                             <div class="flex flex-wrap gap-4">
-                                <a href="https://www.facebook.com/profile.php?id=100069918460934" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#1877F2] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-facebook-f text-xl"></i></a>
-                                <a href="https://www.instagram.com/helloburger_myanmar/?hl=en" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#E4405F] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-instagram text-xl"></i></a>
-                                <a href="https://www.tiktok.com/@helloburgermyanmar?lang=en" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-black hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-tiktok text-xl"></i></a>
-                                <a href="https://invite.viber.com/?g2=AQAL10SiNwNSvlcr0j38906lUfsbxIPiAn8Ft3SA4Mj9sezskGyfdBjIULJmciB%2B" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#7360F2] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-viber text-xl"></i></a>
-                                <a href="https://t.me/HELLO251508" target="_blank" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#229ED9] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-telegram-plane text-xl"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=100069918460934" target="_blank" aria-label="Facebook" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#1877F2] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-facebook-f text-xl"></i></a>
+                                <a href="https://www.instagram.com/helloburger_myanmar/?hl=en" target="_blank" aria-label="Instagram" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#E4405F] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-instagram text-xl"></i></a>
+                                <a href="https://www.tiktok.com/@helloburgermyanmar?lang=en" target="_blank" aria-label="TikTok" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-black hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-tiktok text-xl"></i></a>
+                                <a href="https://invite.viber.com/?g2=AQAL10SiNwNSvlcr0j38906lUfsbxIPiAn8Ft3SA4Mj9sezskGyfdBjIULJmciB%2B" target="_blank" aria-label="Viber" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#7360F2] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-viber text-xl"></i></a>
+                                <a href="https://t.me/HELLO251508" target="_blank" aria-label="Telegram" class="w-12 h-12 rounded-full bg-white border-2 border-hbBlack flex items-center justify-center text-hbBlack hover:bg-[#229ED9] hover:text-white hover:-translate-y-1 transition-all shadow-brutal"><i class="fab fa-telegram-plane text-xl"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1145,8 +1238,7 @@
                 
                 <!-- Brand Column -->
                 <div class="space-y-4">
-                    <a href="#home" class="inline-block">
-                        <!-- TODO: Put your real landscape logo PNG filename here -->
+                    <a href="#home" class="inline-block" aria-label="Go to Home">
                         <img src="logo.png" alt="HELLO BURGER Logo" class="h-12 sm:h-14 md:h-16 w-auto object-contain" style="color: transparent;">
                     </a>
                     <p class="text-gray-400 font-medium mt-4 max-w-xs leading-relaxed">Friendly, Bold, and Juicy. Serving the best burgers with a smile across Myanmar.</p>
@@ -1205,12 +1297,12 @@
                 <div>
                     <h4 class="font-display font-bold text-xl text-hbYellow mb-6">Connect With Us</h4>
                     <div class="flex flex-wrap gap-4">
-                        <a href="https://www.facebook.com/profile.php?id=100069918460934" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#1877F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-facebook-f text-lg"></i></a>
-                        <a href="https://www.instagram.com/helloburger_myanmar/?hl=en" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#E4405F] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-instagram text-lg"></i></a>
-                        <a href="https://www.tiktok.com/@helloburgermyanmar?lang=en" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-white hover:text-black hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-tiktok text-lg"></i></a>
-                        <a href="tel:09968885291" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#10B981] hover:-translate-y-1 transition-all shadow-lg"><i class="fas fa-phone text-lg"></i></a>
-                        <a href="https://invite.viber.com/?g2=AQAL10SiNwNSvlcr0j38906lUfsbxIPiAn8Ft3SA4Mj9sezskGyfdBjIULJmciB%2B" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#7360F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-viber text-lg"></i></a>
-                        <a href="https://t.me/HELLO251508" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#229ED9] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-telegram-plane text-lg"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100069918460934" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#1877F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="https://www.instagram.com/helloburger_myanmar/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#E4405F] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="https://www.tiktok.com/@helloburgermyanmar?lang=en" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-white hover:text-black hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-tiktok text-lg"></i></a>
+                        <a href="tel:09968885291" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#10B981] hover:-translate-y-1 transition-all shadow-lg" aria-label="Phone"><i class="fas fa-phone text-lg"></i></a>
+                        <a href="https://invite.viber.com/?g2=AQAL10SiNwNSvlcr0j38906lUfsbxIPiAn8Ft3SA4Mj9sezskGyfdBjIULJmciB%2B" target="_blank" rel="noopener noreferrer" aria-label="Viber" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#7360F2] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-viber text-lg"></i></a>
+                        <a href="https://t.me/HELLO251508" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#229ED9] hover:-translate-y-1 transition-all shadow-lg"><i class="fab fa-telegram-plane text-lg"></i></a>
                     </div>
                 </div>
 
@@ -1224,7 +1316,7 @@
 
     <!-- Image Lightbox Modal -->
     <div id="image-lightbox" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/90 p-4 transition-opacity duration-300 opacity-0" onclick="closeLightbox()">
-        <button class="absolute top-6 right-6 text-white text-5xl hover:text-hbOrange transition-colors focus:outline-none">&times;</button>
+        <button class="absolute top-6 right-6 text-white text-5xl hover:text-hbOrange transition-colors focus:outline-none" aria-label="Close modal">&times;</button>
         <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl transition-transform duration-300 transform scale-95" alt="Preview" onclick="event.stopPropagation()">
     </div>
 
@@ -1234,11 +1326,13 @@
         // Navbar Scroll
         const navBg = document.getElementById('nav-bg');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navBg.classList.add('shadow-md');
-                navBg.classList.remove('opacity-0');
-            } else {
-                navBg.classList.remove('shadow-md');
+            if(navBg) {
+                if (window.scrollY > 20) {
+                    navBg.classList.add('shadow-md');
+                    navBg.classList.remove('opacity-0');
+                } else {
+                    navBg.classList.remove('shadow-md');
+                }
             }
         });
 
@@ -1266,13 +1360,6 @@
                     if(!menu.classList.contains('hidden')) toggleMenu();
                 });
             });
-        }
-
-        function showMessage() {
-            const msg = document.getElementById('success-msg');
-            msg.classList.remove('hidden');
-            document.querySelector('form').reset();
-            setTimeout(() => { msg.classList.add('hidden'); }, 3000);
         }
 
         // SPA Routing
@@ -1307,20 +1394,24 @@
         const textContainer = document.getElementById('intro-text-1');
         const syllables = ["ဗိုက်", "စာ", "နေ", "ပြီ", "လား", "&nbsp;?"];
         
-        syllables.forEach((syllable) => {
-            const span = document.createElement('span');
-            span.className = 'char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]';
-            span.innerHTML = syllable;
-            textContainer.appendChild(span);
-        });
+        if(textContainer) {
+            syllables.forEach((syllable) => {
+                const span = document.createElement('span');
+                span.className = 'char inline-block opacity-0 transform scale-50 translate-y-12 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]';
+                span.innerHTML = syllable;
+                textContainer.appendChild(span);
+            });
+        }
 
         let introStep = 0;
         let introAnimating = false;
         
         setTimeout(() => {
             const burger = document.getElementById('burger-wrapper');
-            burger.classList.remove('scale-50', '-translate-y-20', 'opacity-0');
-            burger.classList.add('scale-100', 'translate-y-0', 'opacity-100');
+            if(burger) {
+                burger.classList.remove('scale-50', '-translate-y-20', 'opacity-0');
+                burger.classList.add('scale-100', 'translate-y-0', 'opacity-100');
+            }
         }, 500);
         
         function handleIntroNextStep() {
@@ -1330,13 +1421,15 @@
             const loaderOrange = document.getElementById('loader-bg-orange');
             const loaderYellow = document.getElementById('loader-bg-yellow');
             const loaderContent = document.getElementById('loader-content');
-            const chars = textContainer.querySelectorAll('.char');
+            const chars = textContainer ? textContainer.querySelectorAll('.char') : [];
 
             if (introStep === 0) {
                 introAnimating = true;
                 
-                burger.classList.remove('scale-100');
-                burger.classList.add('scale-110', '-translate-y-4');
+                if(burger) {
+                    burger.classList.remove('scale-100');
+                    burger.classList.add('scale-110', '-translate-y-4');
+                }
                 
                 chars.forEach((char, index) => {
                     setTimeout(() => {
@@ -1353,8 +1446,10 @@
             } else if (introStep === 1) {
                 introAnimating = true;
                 
-                burger.classList.remove('scale-110', '-translate-y-4');
-                burger.classList.add('scale-[3]', 'opacity-0'); 
+                if(burger) {
+                    burger.classList.remove('scale-110', '-translate-y-4');
+                    burger.classList.add('scale-[3]', 'opacity-0'); 
+                }
                 
                 chars.forEach((char) => {
                     char.classList.remove('opacity-100', 'scale-100');
@@ -1362,16 +1457,19 @@
                 });
                 
                 setTimeout(() => {
-                    loaderYellow.classList.remove('translate-y-full');
-                    loaderYellow.classList.add('translate-y-0');
+                    if(loaderYellow) {
+                        loaderYellow.classList.remove('translate-y-full');
+                        loaderYellow.classList.add('translate-y-0');
+                    }
                     
                     setTimeout(() => {
-                        loaderOrange.style.transform = 'translateY(-100%)';
-                        loaderYellow.style.transform = 'translateY(-100%)';
-                        loaderContent.style.transform = 'translateY(-100%)';
+                        if(loaderOrange) loaderOrange.style.transform = 'translateY(-100%)';
+                        if(loaderYellow) loaderYellow.style.transform = 'translateY(-100%)';
+                        if(loaderContent) loaderContent.style.transform = 'translateY(-100%)';
                         
                         setTimeout(() => {
-                            document.getElementById('loader-screen').style.display = 'none';
+                            const loaderScreen = document.getElementById('loader-screen');
+                            if(loaderScreen) loaderScreen.style.display = 'none';
                             document.body.style.overflow = ''; 
                             window.removeEventListener('wheel', wheelHandler);
                             window.removeEventListener('touchend', touchEndHandler);
@@ -1382,7 +1480,8 @@
         }
 
         function wheelHandler(e) {
-            if(document.getElementById('loader-screen').style.display === 'none') return;
+            const loaderScreen = document.getElementById('loader-screen');
+            if(loaderScreen && loaderScreen.style.display === 'none') return;
             if (e.deltaY > 0) handleIntroNextStep();
         }
         window.addEventListener('wheel', wheelHandler);
@@ -1390,9 +1489,11 @@
         let touchStartY = 0;
         window.addEventListener('touchstart', e => {
             touchStartY = e.touches[0].clientY;
-        });
+        }, {passive: true});
+
         function touchEndHandler(e) {
-            if(document.getElementById('loader-screen').style.display === 'none') return;
+            const loaderScreen = document.getElementById('loader-screen');
+            if(loaderScreen && loaderScreen.style.display === 'none') return;
             if (touchStartY - e.changedTouches[0].clientY > 50) handleIntroNextStep();
         }
         window.addEventListener('touchend', touchEndHandler);
@@ -1500,7 +1601,7 @@
                     { name: "CHEESE PORK BURGER", desc: "A flavorful pork patty burger with a rich but not too heavy taste.", price: "7,500 MMK", image: "burger5.webp" },
                     { name: "SMASH BURGER", desc: "A juicy patty with Signature Mayo and fresh vegetables.", price: "7,500 MMK", image: "burger6.webp" },
                     { name: "DOUBLE BEEF BURGER", desc: "Made with two juicy patties a perfect choice for burger lovers.", price: "9,500 MMK", image: "burger7.webp" },
-                    { name: "CHARCOLA BURGER", desc: "Made with a soft and fluffy bun for a different burger experience.", price: "7,000 MMK", image: "burger8.webp" },
+                    { name: "CHARCOAL BURGER", desc: "Made with a soft and fluffy bun for a different burger experience.", price: "7,000 MMK", image: "burger8.webp" },
                     { name: "BBQ CHICKEN BURGER", desc: "Grilled chicken patty with Signature Mayo and a spicy BBQ flavor.", price: "7,000 MMK", image: "burger9.webp" },
                     { name: "CHICKEN SANDWICH", desc: "A simple chicken sandwich made with soft and fluffy bread.", price: "8,500 MMK", image: "burger10.webp" },
                     { name: "BACON HOTDOG", desc: "A great choice for bacon lovers.", price: "7,500 MMK", image: "burger11.webp" },
@@ -1538,7 +1639,7 @@
             {
                 category: "COMBO SET",
                 items: [
-                    { name: "COMB0 1", desc: "Cheese Chicken Burger (1) + French Fries (1) + Coca-Cola (1)", originalPrice: "13,000 MMK", price: "12,500 MMK", image: "combo1.webp" },
+                    { name: "COMBO 1", desc: "Cheese Chicken Burger (1) + French Fries (1) + Coca-Cola (1)", originalPrice: "13,000 MMK", price: "12,500 MMK", image: "combo1.webp" },
                     { name: "COMBO 2", desc: "Cheese Beef Burger (1) + Sausage Hotdog (1) + Coca-Cola (1)", originalPrice: "15,000 MMK", price: "14,000 MMK", image: "combo2.webp" },
                     { name: "COMBO 3", desc: "Cheese Chicken Burger (1) + Cheese Beef Burger (1) + Chicken Strips (2) + French Fries (1) + Coca-Cola (2)", originalPrice: "28,500 MMK", price: "27,000 MMK", image: "combo3.webp" },
                     { name: "COMBO 4", desc: "Cheese Chicken Burger (1) + Chicken Sandwich (1) + Sausage Hotdog (1) + French Fries (1) + Coca-Cola (1)", originalPrice: "22,000 MMK", price: "21,000 MMK", image: "combo4.webp" }
@@ -1583,18 +1684,20 @@
                     tab.classList.add('active');
 
                     const targetSection = document.getElementById(`section-${section.category.replace(/\s+/g, '-')}`);
-                    const yOffset = -140; 
-                    const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    window.scrollTo({top: y, behavior: 'smooth'});
+                    if(targetSection) {
+                        const yOffset = -140; 
+                        const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({top: y, behavior: 'smooth'});
 
-                    // Trigger cool pop-up animation for items in the clicked category
-                    const animatedItems = targetSection.querySelectorAll('.menu-item, .extra-box');
-                    animatedItems.forEach((item, idx) => {
-                        item.classList.remove('pop-trigger', 'is-visible');
-                        void item.offsetWidth; // Trigger DOM reflow to restart animation
-                        item.classList.add('pop-trigger');
-                        item.style.animationDelay = `${idx * 60}ms`;
-                    });
+                        // Trigger cool pop-up animation for items in the clicked category
+                        const animatedItems = targetSection.querySelectorAll('.menu-item, .extra-box');
+                        animatedItems.forEach((item, idx) => {
+                            item.classList.remove('pop-trigger', 'is-visible');
+                            void item.offsetWidth; // Trigger DOM reflow to restart animation
+                            item.classList.add('pop-trigger');
+                            item.style.animationDelay = `${idx * 60}ms`;
+                        });
+                    }
                 };
                 categoryTabsContainer.appendChild(tab);
 
@@ -1647,7 +1750,7 @@
                                 </div>
                                 <div class="item-bottom">
                                     ${priceDisplay}
-                                    <button class="add-btn">
+                                    <button class="add-btn" aria-label="Add ${item.name} to cart">
                                         <img src="icon-logo.png" alt="Add" onerror="this.src='https://placehold.co/30x30/FFD400/000000?text=+'">
                                     </button>
                                 </div>
@@ -1671,7 +1774,6 @@
         const menuObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // မြင်ကွင်းထဲ ဝင်လာတဲ့အကွက်တွေကို တစ်ခုပြီးတစ်ခု အချိန်ခွာပြီး ပေါ်စေခြင်း
                     entry.target.style.animationDelay = `${delayCounter * 100}ms`;
                     entry.target.classList.add('is-visible');
                     delayCounter++;
@@ -1681,7 +1783,6 @@
                         delayCounter = 0;
                     }, 150);
                 } else {
-                    // မြင်ကွင်းထဲက ထွက်သွားတာနဲ့ အစကနေ ပြန်ပေါ်ဖို့ Reset ချပေးခြင်း
                     entry.target.classList.remove('is-visible', 'pop-trigger');
                     entry.target.style.animationDelay = '0ms'; 
                 }
@@ -1694,7 +1795,9 @@
 
         // Menu Scroll Spy
         window.addEventListener('scroll', () => {
-            if(document.getElementById('menu').classList.contains('hidden')) return;
+            const menuEl = document.getElementById('menu');
+            if(menuEl && menuEl.classList.contains('hidden')) return;
+            
             let current = '';
             const sections = document.querySelectorAll('#menu-container > div');
 
@@ -1711,8 +1814,10 @@
                     if (btn.textContent === current) {
                         btn.classList.add('active');
                         const container = document.getElementById('category-tabs');
-                        const scrollLeft = btn.offsetLeft - (container.offsetWidth / 2) + (btn.offsetWidth / 2);
-                        container.scrollTo({left: scrollLeft, behavior: 'smooth'});
+                        if(container) {
+                            const scrollLeft = btn.offsetLeft - (container.offsetWidth / 2) + (btn.offsetWidth / 2);
+                            container.scrollTo({left: scrollLeft, behavior: 'smooth'});
+                        }
                     }
                 });
             }
@@ -1722,30 +1827,34 @@
         function openLightbox(src) {
             const lightbox = document.getElementById('image-lightbox');
             const img = document.getElementById('lightbox-img');
-            img.src = src;
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
-            
-            setTimeout(() => {
-                lightbox.classList.remove('opacity-0');
-                img.classList.remove('scale-95');
-                img.classList.add('scale-100');
-            }, 10);
+            if(lightbox && img) {
+                img.src = src;
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Stop background scrolling
+                
+                setTimeout(() => {
+                    lightbox.classList.remove('opacity-0');
+                    img.classList.remove('scale-95');
+                    img.classList.add('scale-100');
+                }, 10);
+            }
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('image-lightbox');
             const img = document.getElementById('lightbox-img');
-            lightbox.classList.add('opacity-0');
-            img.classList.remove('scale-100');
-            img.classList.add('scale-95');
-            
-            setTimeout(() => {
-                lightbox.classList.add('hidden');
-                lightbox.classList.remove('flex');
-                document.body.style.overflow = ''; // Restore background scrolling
-            }, 300);
+            if(lightbox && img) {
+                lightbox.classList.add('opacity-0');
+                img.classList.remove('scale-100');
+                img.classList.add('scale-95');
+                
+                setTimeout(() => {
+                    lightbox.classList.add('hidden');
+                    lightbox.classList.remove('flex');
+                    document.body.style.overflow = ''; // Restore background scrolling
+                }, 300);
+            }
         }
 
         // Branch Scroll Animation Observer - Exclusive Active State
@@ -1753,15 +1862,13 @@
         const branchObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Remove active class from all other branch cards
                     branchCards.forEach(card => card.classList.remove('branch-active'));
-                    // Add active class only to the current visible card
                     entry.target.classList.add('branch-active');
                 } else {
                     entry.target.classList.remove('branch-active');
                 }
             });
-        }, { threshold: 0.3 }); // Lowered threshold to prevent infinite loop jumpiness
+        }, { threshold: 0.3 }); 
 
         branchCards.forEach(card => {
             branchObserver.observe(card);
@@ -1776,12 +1883,89 @@
                     entry.target.classList.remove('is-popped'); // Resets to 0% when out of view
                 }
             });
-        }, { threshold: 0.1 }); // Triggers when 10% of the image is visible
+        }, { threshold: 0.1 }); 
 
         document.querySelectorAll('.home-pop-element').forEach(el => {
             homePopObserver.observe(el);
         });
 
+        // --- Future Expansion Marquee Auto-Scroll & Drag Logic ---
+        const marqueeContainer = document.querySelector('.marquee-container');
+        const marqueeTrack = document.querySelector('.marquee-track');
+        
+        if (marqueeContainer && marqueeTrack) {
+            // Clone the existing 2 sets to make 4 sets. 
+            // This ensures the container is wide enough for infinite scrolling even on ultra-wide screens.
+            const originalHTML = marqueeTrack.innerHTML;
+            marqueeTrack.innerHTML = originalHTML + originalHTML; 
+            
+            let isHovered = false;
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            
+            function autoScrollMarquee() {
+                if (!isHovered && !isDown) {
+                    marqueeContainer.scrollLeft += 1; // Speed of auto-scroll
+                }
+                handleInfiniteLoop();
+                requestAnimationFrame(autoScrollMarquee);
+            }
+            
+            function handleInfiniteLoop() {
+                // We duplicated the 2 sets to 4 sets. Each original set is scrollWidth / 4.
+                const resetPoint = marqueeTrack.scrollWidth / 4;
+                
+                if (marqueeContainer.scrollLeft >= resetPoint * 2) {
+                    marqueeContainer.scrollLeft -= resetPoint;
+                } else if (marqueeContainer.scrollLeft <= 0) {
+                    marqueeContainer.scrollLeft += resetPoint;
+                }
+            }
+
+            // Mouse events for auto-scroll pause & drag
+            marqueeContainer.addEventListener('mouseenter', () => isHovered = true);
+            marqueeContainer.addEventListener('mouseleave', () => {
+                isHovered = false;
+                isDown = false;
+            });
+            
+            // Touch events for auto-scroll pause
+            marqueeContainer.addEventListener('touchstart', () => isHovered = true, {passive: true});
+            marqueeContainer.addEventListener('touchend', () => {
+                setTimeout(() => isHovered = false, 500); 
+            });
+
+            // Drag to scroll functionality (Desktop)
+            marqueeContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - marqueeContainer.offsetLeft;
+                scrollLeft = marqueeContainer.scrollLeft;
+            });
+            
+            marqueeContainer.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+            
+            marqueeContainer.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - marqueeContainer.offsetLeft;
+                const walk = (x - startX) * 1.5; // Drag sensitivity
+                marqueeContainer.scrollLeft = scrollLeft - walk;
+                handleInfiniteLoop();
+            });
+            
+            // Handle native scroll (trackpad/touch swipe)
+            marqueeContainer.addEventListener('scroll', handleInfiniteLoop);
+
+            // Set initial position to block 2 to allow backward dragging immediately
+            // Timeout ensures DOM has rendered and scrollWidth is accurate
+            setTimeout(() => {
+                marqueeContainer.scrollLeft = marqueeTrack.scrollWidth / 4;
+                requestAnimationFrame(autoScrollMarquee);
+            }, 100);
+        }
     </script>
 </body>
 </html>
