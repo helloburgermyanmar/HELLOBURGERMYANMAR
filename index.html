@@ -133,6 +133,13 @@
             scroll-snap-align: center;
             position: relative;
         }
+        
+        @media (min-width: 768px) {
+            .promo-slide {
+                height: auto; /* Let the image dictate the height on PC */
+                aspect-ratio: 21 / 9; /* Assuming a wide promo banner ratio, adjust if needed */
+            }
+        }
 
         .promo-slide img {
             width: 100%;
