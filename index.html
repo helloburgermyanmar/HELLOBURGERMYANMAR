@@ -607,7 +607,7 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="#home" class="flex-shrink-0 flex items-center cursor-pointer block" aria-label="Go to Home">
-                    <img src="logo.png" alt="HB Logo" class="h-12 w-auto object-contain" onerror="this.src='https://placehold.co/100x100/FF6600/FFFFFF?text=HB'">
+                    <img src="logo_rect.png" alt="HELLO BURGER Logo" class="h-10 md:h-12 w-auto object-contain" onerror="this.src='https://placehold.co/240x80/FF6600/FFFFFF?text=HELLO+BURGER'">
                 </a>
 
                 <!-- Desktop Menu -->
@@ -2152,8 +2152,21 @@
         const campDots = document.querySelectorAll('.camp-dot');
         let currentCampIndex = 0;
         let campPhotosCount = 2;
+        let campAutoPlayTimer;
 
         if (campTrack) {
+            function startCampAutoPlay() {
+                stopCampAutoPlay();
+                campAutoPlayTimer = setInterval(() => {
+                    currentCampIndex = (currentCampIndex + 1) % campPhotosCount;
+                    updateCampSlider();
+                }, 4000);
+            }
+
+            function stopCampAutoPlay() {
+                clearInterval(campAutoPlayTimer);
+            }
+
             function updateCampSlider() {
                 campTrack.style.transform = `translateX(-${currentCampIndex * 100}%)`;
                 campDots.forEach((dot, index) => {
@@ -2170,13 +2183,17 @@
             if(campPrevBtn && campNextBtn) {
                 campPrevBtn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    stopCampAutoPlay();
                     currentCampIndex = (currentCampIndex - 1 + campPhotosCount) % campPhotosCount;
                     updateCampSlider();
+                    startCampAutoPlay();
                 });
                 campNextBtn.addEventListener('click', (e) => {
                     e.preventDefault();
+                    stopCampAutoPlay();
                     currentCampIndex = (currentCampIndex + 1) % campPhotosCount;
                     updateCampSlider();
+                    startCampAutoPlay();
                 });
             }
 
@@ -2190,6 +2207,7 @@
                 cStartX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
                 cCurrentX = cStartX;
                 campTrack.style.transition = 'none';
+                stopCampAutoPlay();
             };
 
             const campDragMove = (e) => {
@@ -2214,6 +2232,7 @@
                 }
                 updateCampSlider();
                 cCurrentX = cStartX;
+                startCampAutoPlay();
             };
 
             campTrack.addEventListener('touchstart', campDragStart, {passive: true});
@@ -2224,6 +2243,8 @@
             campTrack.parentNode.addEventListener('mousemove', campDragMove);
             campTrack.parentNode.addEventListener('mouseup', campDragEnd);
             campTrack.parentNode.addEventListener('mouseleave', campDragEnd);
+            
+            startCampAutoPlay();
         }
     </script>
 </body>
