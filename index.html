@@ -97,6 +97,13 @@
             display: block !important;
         }
 
+        /* Mobile specific fix for hero banner */
+        @media (max-width: 767px) {
+            .home-slide img {
+                object-fit: fill !important; /* Full screen, no frames, no cut-off */
+            }
+        }
+
         @font-face {
             font-family: 'JtGilboys';
             src: url('Jt Gilboys.ttf') format('truetype');
@@ -623,7 +630,8 @@
         <!-- Slider Container -->
         <div class="relative w-full h-screen min-h-[100dvh] overflow-hidden bg-hbBlack">
             <!-- Slider Track -->
-            <div id="home-slider-track" class="flex w-full h-full items-stretch transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
+            <!-- Added absolute inset-0 to prevent height gap bugs on mobile -->
+            <div id="home-slider-track" class="absolute inset-0 flex w-full h-full items-stretch transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
                 
                 <!-- Slide 1 -->
                 <div class="home-slide w-full h-full flex-shrink-0 relative select-none">
