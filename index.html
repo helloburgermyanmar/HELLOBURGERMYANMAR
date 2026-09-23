@@ -551,6 +551,33 @@
             display: flex;
             width: max-content;
         }
+
+        /* History Slider Styles */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .history-photo {
+            transform: scale(0.9);
+            opacity: 0.3;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .history-text {
+            transform: translateY(40px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+        }
+        .history-slide-item.is-active .history-photo {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .history-slide-item.is-active .history-text {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="font-body antialiased overflow-x-hidden">
@@ -1093,86 +1120,86 @@
                 </p>
             </div>
 
-            <!-- Cinematic Image Viewport (The slow zoom Spaceedu effect) -->
-            <div class="relative w-full max-w-6xl aspect-video md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] border-2 border-[#3f3936] group cursor-pointer mb-24">
-                <img src="https://placehold.co/1920x800/3E2723/D7CCC8?text=Hello+Burger+History" alt="Hello Burger Journey" class="absolute inset-0 w-full h-full object-cover sepia-[0.4] brightness-[0.6] contrast-[1.1] transition-transform duration-[15000ms] ease-out scale-100 group-hover:scale-125 group-hover:sepia-[0.2]">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.9)_100%)] transition-opacity duration-1000"></div>
-            </div>
+            <!-- History Slider Section (Replaces vertical timeline, big photo, and removes center white line) -->
+            <div class="relative w-full max-w-4xl mx-auto mb-32 px-2 md:px-12" id="history-slider-container">
+                <div class="overflow-hidden relative w-full rounded-2xl">
+                    <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-full" id="history-slider-track">
+                        
+                        <!-- Slide 1: 2018 -->
+                        <div class="w-full flex-shrink-0 flex flex-col items-center hist-slide px-2 md:px-4">
+                            <div class="w-full aspect-[4/3] overflow-hidden border-2 border-[#2a2624] shadow-lg relative mb-8 rounded-2xl bg-[#110f0e]">
+                                <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2018" alt="2018 History" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 transform scale-105 hist-img">
+                            </div>
+                            <div class="text-center w-full max-w-2xl hist-text opacity-0 transform translate-y-8 transition-all duration-700 delay-300">
+                                <h3 class="text-4xl md:text-5xl font-display text-hbOrange font-bold mb-4 drop-shadow-lg">2018</h3>
+                                <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">It started selling on a three-wheeled cart at the night market in Sagaing. It was a small business started by a single person, with no background, when the founder was just over 18 years old.</p>
+                            </div>
+                        </div>
 
-            <!-- History Timeline -->
-            <div class="relative max-w-4xl mx-auto w-full mb-32">
-                <!-- Center Line -->
-                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#3f3936] to-transparent md:-translate-x-1/2"></div>
+                        <!-- Slide 2: 2019 -->
+                        <div class="w-full flex-shrink-0 flex flex-col items-center hist-slide px-2 md:px-4">
+                            <div class="w-full aspect-[4/3] overflow-hidden border-2 border-[#2a2624] shadow-lg relative mb-8 rounded-2xl bg-[#110f0e]">
+                                <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2019" alt="2019 History" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 transform scale-105 hist-img">
+                            </div>
+                            <div class="text-center w-full max-w-2xl hist-text opacity-0 transform translate-y-8 transition-all duration-700 delay-300">
+                                <h3 class="text-4xl md:text-5xl font-display text-hbYellow font-bold mb-4 drop-shadow-lg">2019</h3>
+                                <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">Instead of selling from a three-wheeled cart, they sold their products as a counter shop on the side of the road to make it more organized. During that time, they also gained the trust of consumers.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: 2020 -->
+                        <div class="w-full flex-shrink-0 flex flex-col items-center hist-slide px-2 md:px-4">
+                            <div class="w-full aspect-[4/3] overflow-hidden border-2 border-[#2a2624] shadow-lg relative mb-8 rounded-2xl bg-[#110f0e]">
+                                <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2020" alt="2020 History" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 transform scale-105 hist-img">
+                            </div>
+                            <div class="text-center w-full max-w-2xl hist-text opacity-0 transform translate-y-8 transition-all duration-700 delay-300">
+                                <h3 class="text-4xl md:text-5xl font-display text-hbOrange font-bold mb-4 drop-shadow-lg">2020</h3>
+                                <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">The business was renamed Ko Pee Shop. Due to the increasing support from consumers, a shop with a seating area for about 15 customers was opened near the nine-foot bridge, undergoing renovations after an earthquake.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4: 2022 & 2023 -->
+                        <div class="w-full flex-shrink-0 flex flex-col items-center hist-slide px-2 md:px-4">
+                            <div class="w-full aspect-[4/3] overflow-hidden border-2 border-[#2a2624] shadow-lg relative mb-8 rounded-2xl bg-[#110f0e]">
+                                <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2022+%26+2023" alt="2022 & 2023 History" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 transform scale-105 hist-img">
+                            </div>
+                            <div class="text-center w-full max-w-2xl hist-text opacity-0 transform translate-y-8 transition-all duration-700 delay-300">
+                                <h3 class="text-4xl md:text-5xl font-display text-hbYellow font-bold mb-4 drop-shadow-lg">2022 & 2023</h3>
+                                <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">After opening a small shop named Hello Food & Drink near Mandalay Lake in 2022, the store was expanded to Chin Su Road in Sagaing City under the official HELLOBURGER brand in 2023.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5: 2026 -->
+                        <div class="w-full flex-shrink-0 flex flex-col items-center hist-slide px-2 md:px-4">
+                            <div class="w-full aspect-[4/3] overflow-hidden border-2 border-[#2a2624] shadow-lg relative mb-8 rounded-2xl bg-[#110f0e]">
+                                <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2026" alt="2026 History" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 transform scale-105 hist-img">
+                            </div>
+                            <div class="text-center w-full max-w-2xl hist-text opacity-0 transform translate-y-8 transition-all duration-700 delay-300">
+                                <h3 class="text-4xl md:text-5xl font-display text-hbOrange font-bold mb-4 drop-shadow-lg">2026</h3>
+                                <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">Thanks to overwhelming consumer demand, we have proudly opened a new Mandalay branch.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 
-                <!-- 2018 -->
-                <div class="relative flex flex-col md:flex-row items-center w-full mb-16 md:mb-20 group/timeline">
-                    <div class="md:w-1/2 md:pr-16 md:text-right pl-16 md:pl-0 w-full mb-6 md:mb-0">
-                        <h3 class="text-4xl md:text-5xl font-display text-[#f0ebe1] font-bold mb-3 drop-shadow-lg transition-colors duration-500 group-hover/timeline:text-hbOrange">2018</h3>
-                        <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">It started selling on a three-wheeled cart at the night market in Sagaing. It was a small business started by a single person, with no background, when the founder was just over 18 years old.</p>
-                    </div>
-                    <div class="absolute left-6 md:left-1/2 top-2 md:top-1/2 md:-translate-y-1/2 w-4 h-4 rounded-full bg-hbOrange border-4 border-[#0a0908] md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(255,102,0,0.6)]"></div>
-                    <div class="md:w-1/2 md:pl-16 pl-16 w-full">
-                        <div class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-[#2a2624] shadow-lg cursor-pointer">
-                            <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2018" alt="2018 History" class="absolute inset-0 w-full h-full object-cover sepia-[0.4] brightness-[0.7] transition-transform duration-[10000ms] ease-out hover:scale-110 hover:sepia-0 hover:brightness-100">
-                        </div>
-                    </div>
-                </div>
+                <!-- Custom Styles for active slide animation -->
+                <style>
+                    .hist-slide.active-slide .hist-text {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                    .hist-slide.active-slide .hist-img {
+                        transform: scale(1);
+                    }
+                </style>
 
-                <!-- 2019 -->
-                <div class="relative flex flex-col md:flex-row items-center w-full mb-16 md:mb-20 group/timeline">
-                    <div class="md:w-1/2 md:pr-16 pl-16 md:pl-0 w-full order-2 md:order-1 mt-6 md:mt-0">
-                        <div class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-[#2a2624] shadow-lg cursor-pointer">
-                            <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2019" alt="2019 History" class="absolute inset-0 w-full h-full object-cover sepia-[0.4] brightness-[0.7] transition-transform duration-[10000ms] ease-out hover:scale-110 hover:sepia-0 hover:brightness-100">
-                        </div>
-                    </div>
-                    <div class="absolute left-6 md:left-1/2 top-2 md:top-1/2 md:-translate-y-1/2 w-4 h-4 rounded-full bg-hbYellow border-4 border-[#0a0908] md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(255,212,0,0.6)]"></div>
-                    <div class="md:w-1/2 md:pl-16 pl-16 w-full text-left order-1 md:order-2">
-                        <h3 class="text-4xl md:text-5xl font-display text-[#f0ebe1] font-bold mb-3 drop-shadow-lg transition-colors duration-500 group-hover/timeline:text-hbYellow">2019</h3>
-                        <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">Instead of selling from a three-wheeled cart, they sold their products as a counter shop on the side of the road to make it more organized. During that time, they also gained the trust of consumers.</p>
-                    </div>
-                </div>
-
-                <!-- 2020 -->
-                <div class="relative flex flex-col md:flex-row items-center w-full mb-16 md:mb-20 group/timeline">
-                    <div class="md:w-1/2 md:pr-16 md:text-right pl-16 md:pl-0 w-full mb-6 md:mb-0">
-                        <h3 class="text-4xl md:text-5xl font-display text-[#f0ebe1] font-bold mb-3 drop-shadow-lg transition-colors duration-500 group-hover/timeline:text-hbOrange">2020</h3>
-                        <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">The business was renamed Ko Pee Shop. Due to the increasing support from consumers, a shop with a seating area for about 15 customers was opened near the nine-foot bridge, undergoing renovations after an earthquake.</p>
-                    </div>
-                    <div class="absolute left-6 md:left-1/2 top-2 md:top-1/2 md:-translate-y-1/2 w-4 h-4 rounded-full bg-hbOrange border-4 border-[#0a0908] md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(255,102,0,0.6)]"></div>
-                    <div class="md:w-1/2 md:pl-16 pl-16 w-full">
-                        <div class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-[#2a2624] shadow-lg cursor-pointer">
-                            <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2020" alt="2020 History" class="absolute inset-0 w-full h-full object-cover sepia-[0.4] brightness-[0.7] transition-transform duration-[10000ms] ease-out hover:scale-110 hover:sepia-0 hover:brightness-100">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2022 & 2023 -->
-                <div class="relative flex flex-col md:flex-row items-center w-full mb-16 md:mb-20 group/timeline">
-                    <div class="md:w-1/2 md:pr-16 pl-16 md:pl-0 w-full order-2 md:order-1 mt-6 md:mt-0">
-                        <div class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-[#2a2624] shadow-lg cursor-pointer">
-                            <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2022+%26+2023" alt="2022 and 2023 History" class="absolute inset-0 w-full h-full object-cover sepia-[0.4] brightness-[0.7] transition-transform duration-[10000ms] ease-out hover:scale-110 hover:sepia-0 hover:brightness-100">
-                        </div>
-                    </div>
-                    <div class="absolute left-6 md:left-1/2 top-2 md:top-1/2 md:-translate-y-1/2 w-4 h-4 rounded-full bg-hbYellow border-4 border-[#0a0908] md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(255,212,0,0.6)]"></div>
-                    <div class="md:w-1/2 md:pl-16 pl-16 w-full text-left order-1 md:order-2">
-                        <h3 class="text-4xl md:text-5xl font-display text-[#f0ebe1] font-bold mb-3 drop-shadow-lg transition-colors duration-500 group-hover/timeline:text-hbYellow">2022 & 2023</h3>
-                        <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">After opening a small shop named Hello Food & Drink near Mandalay Lake in 2022, the store was expanded to Chin Su Road in Sagaing City under the official HELLOBURGER brand in 2023.</p>
-                    </div>
-                </div>
-
-                <!-- 2026 -->
-                <div class="relative flex flex-col md:flex-row items-center w-full group/timeline">
-                    <div class="md:w-1/2 md:pr-16 md:text-right pl-16 md:pl-0 w-full mb-6 md:mb-0">
-                        <h3 class="text-4xl md:text-5xl font-display text-[#f0ebe1] font-bold mb-3 drop-shadow-lg transition-colors duration-500 group-hover/timeline:text-hbOrange">2026</h3>
-                        <p class="text-[#b8b1a9] font-body leading-relaxed text-base md:text-lg">Thanks to overwhelming consumer demand, we have proudly opened a new Mandalay branch.</p>
-                    </div>
-                    <div class="absolute left-6 md:left-1/2 top-2 md:top-1/2 md:-translate-y-1/2 w-4 h-4 rounded-full bg-hbOrange border-4 border-[#0a0908] md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(255,102,0,0.6)]"></div>
-                    <div class="md:w-1/2 md:pl-16 pl-16 w-full">
-                        <div class="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden border border-[#2a2624] shadow-lg cursor-pointer">
-                            <img src="https://placehold.co/800x600/3E2723/D7CCC8?text=2026" alt="2026 History" class="absolute inset-0 w-full h-full object-cover sepia-[0.4] brightness-[0.7] transition-transform duration-[10000ms] ease-out hover:scale-110 hover:sepia-0 hover:brightness-100">
-                        </div>
-                    </div>
-                </div>
+                <!-- Navigation Controls -->
+                <button id="hist-prev-btn" aria-label="Previous History" class="absolute -left-2 md:-left-6 top-[35%] -translate-y-1/2 bg-[#110f0e] text-hbYellow w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-[#3f3936] flex items-center justify-center hover:bg-hbOrange hover:text-white transition-all z-10 shadow-brutal"><i class="fas fa-chevron-left text-lg md:text-xl"></i></button>
+                <button id="hist-next-btn" aria-label="Next History" class="absolute -right-2 md:-right-6 top-[35%] -translate-y-1/2 bg-[#110f0e] text-hbYellow w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-[#3f3936] flex items-center justify-center hover:bg-hbOrange hover:text-white transition-all z-10 shadow-brutal"><i class="fas fa-chevron-right text-lg md:text-xl"></i></button>
+                
+                <!-- Indicator Dots -->
+                <div class="flex justify-center gap-3 mt-8" id="hist-dots-container"></div>
             </div>
 
             <!-- Founder Section -->
@@ -1973,6 +2000,84 @@
                 marqueeContainer.scrollLeft = marqueeTrack.scrollWidth / 4;
                 requestAnimationFrame(autoScrollMarquee);
             }, 100);
+        }
+
+        // --- History Horizontal Slider Logic ---
+        const histTrack = document.getElementById('history-slider-track');
+        const histSlides = document.querySelectorAll('.hist-slide');
+        const histPrevBtn = document.getElementById('hist-prev-btn');
+        const histNextBtn = document.getElementById('hist-next-btn');
+        const histDotsContainer = document.getElementById('hist-dots-container');
+        let currentHistIndex = 0;
+
+        if (histTrack && histSlides.length > 0) {
+            // Create dots
+            histSlides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = `w-3 h-3 rounded-full transition-colors ${i === 0 ? 'bg-hbOrange' : 'bg-[#3f3936]'}`;
+                dot.setAttribute('aria-label', `History Slide ${i + 1}`);
+                dot.addEventListener('click', () => goToHistSlide(i));
+                if(histDotsContainer) histDotsContainer.appendChild(dot);
+            });
+            const histDots = histDotsContainer ? histDotsContainer.querySelectorAll('button') : [];
+
+            function updateHistSlider() {
+                histTrack.style.transform = `translateX(-${currentHistIndex * 100}%)`;
+                histSlides.forEach((slide, i) => {
+                    if (i === currentHistIndex) {
+                        slide.classList.add('active-slide');
+                        if(histDots[i]) {
+                            histDots[i].classList.remove('bg-[#3f3936]');
+                            histDots[i].classList.add('bg-hbOrange');
+                        }
+                    } else {
+                        slide.classList.remove('active-slide');
+                        if(histDots[i]) {
+                            histDots[i].classList.remove('bg-hbOrange');
+                            histDots[i].classList.add('bg-[#3f3936]');
+                        }
+                    }
+                });
+            }
+
+            function goToHistSlide(index) {
+                currentHistIndex = index;
+                if (currentHistIndex < 0) currentHistIndex = histSlides.length - 1;
+                if (currentHistIndex >= histSlides.length) currentHistIndex = 0;
+                updateHistSlider();
+            }
+
+            if(histPrevBtn) histPrevBtn.addEventListener('click', () => goToHistSlide(currentHistIndex - 1));
+            if(histNextBtn) histNextBtn.addEventListener('click', () => goToHistSlide(currentHistIndex + 1));
+
+            // Initialize first slide
+            setTimeout(updateHistSlider, 100);
+            
+            // Swipe support
+            let hStartX = 0;
+            let hCurrentX = 0;
+            let isHDragging = false;
+            
+            histTrack.addEventListener('touchstart', (e) => {
+                isHDragging = true;
+                hStartX = e.touches[0].clientX;
+            }, {passive: true});
+            
+            histTrack.addEventListener('touchmove', (e) => {
+                if(!isHDragging) return;
+                hCurrentX = e.touches[0].clientX;
+            }, {passive: true});
+            
+            histTrack.addEventListener('touchend', (e) => {
+                if(!isHDragging) return;
+                isHDragging = false;
+                let diff = hCurrentX - hStartX;
+                if (Math.abs(diff) > 50 && hCurrentX !== 0) {
+                    if (diff > 0) goToHistSlide(currentHistIndex - 1);
+                    else goToHistSlide(currentHistIndex + 1);
+                }
+                hCurrentX = 0;
+            });
         }
     </script>
 </body>
