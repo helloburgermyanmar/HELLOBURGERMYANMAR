@@ -100,8 +100,10 @@
         /* Mobile specific fix for hero banner */
         @media (max-width: 767px) {
             .home-slide img {
-                object-fit: fill !important; /* Full screen, no frames, no cut-off */
+                object-fit: cover !important; /* Reverting back to cover for better quality, height will be controlled */
+                object-position: center !important;
             }
+            /* Removing the fill override */
         }
 
         @font-face {
@@ -628,7 +630,8 @@
 
     <section id="home" class="page-section hidden bg-[#FFF9F5] overflow-x-hidden">
         <!-- Slider Container -->
-        <div class="relative w-full h-screen min-h-[100dvh] overflow-hidden bg-hbBlack">
+        <!-- Changed h-screen to handle mobile aspect ratio better -->
+        <div class="relative w-full h-[50vh] md:h-screen md:min-h-[100dvh] overflow-hidden bg-hbBlack mt-20 md:mt-0">
             <!-- Slider Track -->
             <!-- Added absolute inset-0 to prevent height gap bugs on mobile -->
             <div id="home-slider-track" class="absolute inset-0 flex w-full h-full items-stretch transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing">
