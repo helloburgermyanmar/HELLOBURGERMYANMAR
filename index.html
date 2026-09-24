@@ -739,8 +739,15 @@
             </div>
             
             <!-- Video Container -->
-            <div class="w-full max-w-5xl mx-auto aspect-video">
-                <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&width=auto&t=0&autoplay=1&mute=1" class="w-full h-full border-none overflow-hidden" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <div class="w-full max-w-5xl mx-auto aspect-video px-4">
+                <!-- Using Facebook's recommended embed format for better compatibility -->
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
+                <div class="fb-video" data-href="https://www.facebook.com/reel/25791313653858045" data-width="auto" data-show-text="false">
+                    <blockquote cite="https://www.facebook.com/reel/25791313653858045" class="fb-xfbml-parse-ignore">
+                        <a href="https://www.facebook.com/reel/25791313653858045">Watch on Facebook</a>
+                    </blockquote>
+                </div>
             </div>
         </div>
     </section>
@@ -771,9 +778,6 @@
 
                 <!-- Text Area -->
                 <div class="w-full lg:w-1/2 relative z-10 flex flex-col items-start">
-                    <span class="inline-block px-5 py-2 rounded-full border-2 border-hbBlack bg-hbOrange text-white font-display font-bold text-sm tracking-widest uppercase mb-6 shadow-brutal">
-                        Limited Time Offer
-                    </span>
                     
                     <!-- === EDIT CAMPAIGN TEXT HERE === -->
                     <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-hbBlack mb-6 uppercase tracking-wide leading-tight">
