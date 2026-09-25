@@ -739,14 +739,16 @@
             </div>
             
             <!-- Video Container -->
-            <div class="w-full max-w-5xl mx-auto aspect-video px-4">
-                <!-- Using Facebook's recommended embed format for better compatibility -->
-                <div id="fb-root"></div>
-                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
-                <div class="fb-video" data-href="https://www.facebook.com/reel/25791313653858045" data-width="auto" data-show-text="false">
-                    <blockquote cite="https://www.facebook.com/reel/25791313653858045" class="fb-xfbml-parse-ignore">
-                        <a href="https://www.facebook.com/reel/25791313653858045">Watch on Facebook</a>
-                    </blockquote>
+            <div class="w-full max-w-5xl mx-auto px-4">
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-brutal border-4 border-hbBlack bg-gray-100 flex items-center justify-center">
+                    <!-- Loading Placeholder (Shows behind iframe if connection refused) -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 p-4">
+                        <i class="fab fa-facebook text-5xl mb-3 text-[#1877F2]"></i>
+                        <p class="font-medium text-base">Loading Facebook Video...</p>
+                        <p class="text-xs mt-2 text-center max-w-md">If video does not appear, the Facebook video link may need to be updated to a full desktop URL instead of a share link.</p>
+                    </div>
+                    <!-- Facebook Iframe -->
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F25791313653858045&show_text=false&width=560" width="100%" height="100%" class="absolute top-0 left-0 w-full h-full border-none z-10" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
             </div>
         </div>
