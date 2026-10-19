@@ -584,12 +584,12 @@
         </div>
         <div id="loader-bg-yellow" class="absolute inset-0 bg-hbYellow translate-y-full transition-transform duration-[1000ms] ease-[cubic-bezier(0.77,0,0.175,1)] z-20"></div>
 
-        <div id="loader-content" class="relative z-30 flex flex-col items-center w-full max-w-4xl px-4 transition-transform duration-1000 ease-out">
+        <div id="loader-content" class="relative z-30 flex flex-col items-center justify-center w-full max-w-4xl px-4 md:pb-6 transition-transform duration-1000 ease-out">
             <div id="burger-wrapper" class="relative transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform scale-50 -translate-y-20 opacity-0">
-                <img src="loading.png" alt="Loading" class="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl animate-[floating_3s_ease-in-out_infinite] mx-auto">
+                <img src="loading.png" alt="Loading" class="w-64 sm:w-72 md:w-auto md:max-h-[45vh] h-auto object-contain drop-shadow-2xl animate-[floating_3s_ease-in-out_infinite] mx-auto">
             </div>
             
-            <div class="mt-8 flex items-center justify-center w-full">
+            <div class="mt-8 md:mt-4 flex items-center justify-center w-full">
                 <!-- Javascript will populate characters here to prevent wrapping and apply staggered animation -->
                 <h1 id="intro-text-1" class="text-white font-display font-bold text-3xl sm:text-4xl md:text-5xl drop-shadow-lg tracking-wide text-center flex flex-nowrap justify-center whitespace-nowrap">
                 </h1>
@@ -890,6 +890,10 @@
                         <div class="w-full min-w-[280px]">
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">62 Branch</h4>
                             <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> 62st between 109st & 110st, Chanmyathazi Township, Mandalay.</p>
+                            <!-- === EDIT BRANCH 1 GOOGLE MAP LINK HERE === -->
+                            <a href="PUT_GOOGLE_MAP_LINK_HERE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 bg-hbYellow text-hbBlack border-2 border-hbBlack px-5 py-2.5 rounded-full font-display font-bold text-sm shadow-brutal hover:bg-hbOrange hover:text-white hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">
+                                <i class="fas fa-map-marked-alt"></i> View in Google Map
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -906,6 +910,10 @@
                         <div class="w-full min-w-[280px]">
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">KoePay Branch</h4>
                             <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Near KoePay Bridge.</p>
+                            <!-- === EDIT BRANCH 2 GOOGLE MAP LINK HERE === -->
+                            <a href="PUT_GOOGLE_MAP_LINK_HERE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 bg-hbYellow text-hbBlack border-2 border-hbBlack px-5 py-2.5 rounded-full font-display font-bold text-sm shadow-brutal hover:bg-hbOrange hover:text-white hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">
+                                <i class="fas fa-map-marked-alt"></i> View in Google Map
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -922,6 +930,10 @@
                         <div class="w-full min-w-[280px]">
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">Chin Su Branch</h4>
                             <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Chin Su Road, Chin Su Ward, Sagaing.</p>
+                            <!-- === EDIT BRANCH 3 GOOGLE MAP LINK HERE === -->
+                            <a href="PUT_GOOGLE_MAP_LINK_HERE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 bg-hbYellow text-hbBlack border-2 border-hbBlack px-5 py-2.5 rounded-full font-display font-bold text-sm shadow-brutal hover:bg-hbOrange hover:text-white hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">
+                                <i class="fas fa-map-marked-alt"></i> View in Google Map
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -938,6 +950,30 @@
                         <div class="w-full min-w-[280px]">
                             <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">73st Branch</h4>
                             <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> 73st between 37st & 38st, Maha Aung Myay Township, Mandalay</p>
+                            <!-- === EDIT BRANCH 4 GOOGLE MAP LINK HERE === -->
+                            <a href="PUT_GOOGLE_MAP_LINK_HERE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 bg-hbYellow text-hbBlack border-2 border-hbBlack px-5 py-2.5 rounded-full font-display font-bold text-sm shadow-brutal hover:bg-hbOrange hover:text-white hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">
+                                <i class="fas fa-map-marked-alt"></i> View in Google Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branch 5 Photo Card -->
+                <div class="branch-card w-full">
+                    <div role="button" tabindex="0" class="branch-img-wrapper group" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="Branch 5.webp" alt="Branch 5" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="branch-title-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-8 pointer-events-none">
+                            <h4 class="font-display text-3xl text-white uppercase tracking-widest drop-shadow-lg">New Branch</h4>
+                        </div>
+                    </div>
+                    <div class="branch-info-wrapper">
+                        <div class="w-full min-w-[280px]">
+                            <h4 class="font-display text-3xl text-hbOrange uppercase mb-6 tracking-wide">New Branch</h4>
+                            <p class="text-hbBlack font-bold flex items-center gap-4"><i class="fas fa-map-marker-alt text-2xl text-hbYellow w-6"></i> Enter New Branch Address Here.</p>
+                            <!-- === EDIT BRANCH 5 GOOGLE MAP LINK HERE === -->
+                            <a href="PUT_GOOGLE_MAP_LINK_HERE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 bg-hbYellow text-hbBlack border-2 border-hbBlack px-5 py-2.5 rounded-full font-display font-bold text-sm shadow-brutal hover:bg-hbOrange hover:text-white hover:shadow-brutal-hover hover:-translate-y-0.5 transition-all">
+                                <i class="fas fa-map-marked-alt"></i> View in Google Map
+                            </a>
                         </div>
                     </div>
                 </div>
